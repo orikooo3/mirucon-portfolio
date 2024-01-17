@@ -50,8 +50,8 @@ services:
             timeout: 5s
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        links:
-            - mysql:mysql
+        depends_on:
+            - mysql
         ports:
             - 8080:80
         environment:
