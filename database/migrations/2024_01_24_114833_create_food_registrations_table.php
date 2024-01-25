@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('food_registrations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); #外部キー
+            $table->foreignId('meal_record_id')->constrained()->onDelete('cascade'); #外部キー
+            $table->integer('grams');
+            $table->integer('calory');
+            $table->integer('protein');
+            $table->integer('fat');
+            $table->integer('carbohydrate');
             $table->timestamps();
         });
     }
