@@ -39,6 +39,27 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- age  -->
+        <div class="mt-4">
+            <x-input-label for="age" :value="__('Age')" />
+            <x-text-input id="age" class="block mt-1 w-full" type="text" name="age" :value="old('age')" required autofocus autocomplete="age" />
+            <x-input-error :messages="$errors->get('age')" class="mt-2" />
+        </div>
+
+        <!-- sex  -->
+        <div class="mt-4">
+            <x-input-label for="sex" :value="__('Sex')" />
+            <x-text-input id="sex" class="block mt-1 w-full" type="text" name="sex" :value="old('sex')" required autofocus autocomplete="sex" />
+            <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+        </div>
+
+        <!-- height  -->
+        <div class="mt-4">
+            <x-input-label for="height" :value="__('Height')" />
+            <x-text-input id="v" class="block mt-1 w-full" type="text" name="height" :value="old('height')" required autofocus autocomplete="height" />
+            <x-input-error :messages="$errors->get('height')" class="mt-2" />
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
