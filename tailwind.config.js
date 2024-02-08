@@ -13,15 +13,15 @@ export default {
         extend: {
             colors: {
                 "main-color": "#294A62",
-                "main-thin-color": "#BED4E3",
+                "main-hover-color": "#E2EBF2",
                 "sub-color": "#F17E5C",
-                "sub-thin-color": "#FAD9D0",
+                "sub-hover-color": "#FAD9D0",
+                "white-color": "#FDFDFD",
                 "black-color": "#333333",
                 "explain-color": "#626D72",
-                "white-color": "#FDFDFD",
                 "bkg-color": "#F1F2F4",
                 "alarm-color": "#BE0A2C",
-                "alarm-thin-color": "#FDE1E7",
+                "alarm-hover-color": "#FDE1E7",
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
