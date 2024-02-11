@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-slot name="header">{{ 'MealPro' }}</x-slot>
+    <x-slot name="title">新規登録</x-slot>
 
     <div class="flex items-center justify-center mb-3 text-2xl font-semibold text-black-color">
         新規登録

@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <x-slot name="header">{{ 'MealPro' }}</x-slot>
+    <x-slot name="title">ログイン</x-slot>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="flex items-center justify-center mb-6 text-2xl font-semibold text-black-color">
-    ログイン
+        ログイン
     </div>
 
     <form method="POST" action="{{ route('login') }}">
@@ -14,8 +14,8 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" class="mt-7" />
-            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required
-                autofocus />
+            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')"
+                required autofocus />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -40,6 +40,7 @@
                     </label>
                 </div>
             </div>
+
             <!-- Forgot password? -->
             @if (Route::has('password.request'))
                 <a class="text-sm mt-4 text-main-color  rounded-md hover:text-main-color hover:opacity-70 hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-color"
