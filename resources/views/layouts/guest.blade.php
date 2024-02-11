@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ $title }}&nbsp;|&nbsp;{{ config('app.name', 'Laravel') }}</title>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="antialiased text-black-color">
+    @include('layouts.navigation')
     <!-- Page Heading -->
     @if (isset($header))
         <header class="bg-main-color shadow md:z-40">
