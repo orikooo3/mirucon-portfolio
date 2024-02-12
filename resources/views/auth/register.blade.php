@@ -1,6 +1,5 @@
 <x-guest-layout>
     <x-slot name="title">新規登録</x-slot>
-
     <div class="flex items-center justify-center mb-3 text-2xl font-semibold text-black-color">
         新規登録
     </div>
@@ -47,8 +46,8 @@
         <!-- age  -->
         <div class="mt-4">
             <x-input-label for="age" :value="__('Age')" />
-            <x-text-input id="age" class="block mt-1 w-full" type="number" pattern="^([1-9]\d*|0)(\.\d+)?$" min="0" name="age" :value="old('age')"
-                required autofocus autocomplete="age" />
+            <x-text-input id="age" class="block mt-1 w-full" type="number" pattern="^([1-9]\d*|0)(\.\d+)?$"
+                min="0" name="age" :value="old('age')" required autofocus autocomplete="age" />
             <x-input-error :messages="$errors->get('age')" class="mt-2" />
         </div>
 
