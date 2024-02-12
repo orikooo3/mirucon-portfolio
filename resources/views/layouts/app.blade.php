@@ -13,9 +13,8 @@
 </head>
 
 <body class="font-sans antialiased">
+    @include('layouts.navigation')
     <div class="min-h-screen bg-bkg-color">
-        @include('layouts.navigation')
-
         <!-- Page Heading -->
         @if (isset($header))
             <header class="bg-main-color shadow md:z-40">
@@ -26,9 +25,7 @@
         @endif
 
         <!-- Page Content -->
-        <main>
             {{ $slot }}
-        </main>
     </div>
 </body>
 

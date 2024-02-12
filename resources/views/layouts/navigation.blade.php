@@ -11,7 +11,7 @@
                     </div>
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome', 'login', 'register')">
+                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
                             {{ 'MealPro' }}
                         </x-nav-link>
                     </div>
