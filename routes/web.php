@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FoodRegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +29,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Route::resource('food_registration', FoodRegistrationController::class);
+
+Route::prefix('/food_registrations')
+->middleware(['auth'])
+->controller(FoodRegistrationController::class)
+->name('food_registrations.')
+->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/', 'store')->name('store');
+});
+
+/**
+ * 目的別にルート情報を分割する
+ */
 require __DIR__.'/auth.php';

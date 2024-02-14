@@ -50,7 +50,23 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ ('本日の記録') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ ('食事記録') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('food_registrations.index')">
+                            {{ ('食品一覧') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('food_registrations.create')">
+                            {{ ('食品登録') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ ('設定') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

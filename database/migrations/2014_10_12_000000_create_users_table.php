@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->tinyInteger('age');
+            $table->double('height');
+            $table->boolean('sex');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
