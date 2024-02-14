@@ -32,16 +32,20 @@ Route::middleware('auth')->group(function () {
 // Route::resource('food_registration', FoodRegistrationController::class);
 
 Route::prefix('/food_registrations')
-->middleware(['auth'])
-->controller(FoodRegistrationController::class)
-->name('food_registrations.')
-->group(function(){
-    Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/', 'store')->name('store');
-});
+    ->middleware(['auth'])
+    ->controller(FoodRegistrationController::class)
+    ->name('food_registrations.')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/{id}', 'update')->name('update');
+        Route::get('/{id}/destroy', 'destroy')->name('destroy');
+        Route::post('/{id}/destroy', 'destroy')->name('destroy');
+    });
 
 /**
  * 目的別にルート情報を分割する
  */
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
