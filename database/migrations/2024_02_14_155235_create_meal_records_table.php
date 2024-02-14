@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('meal_records', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); #外部キー
-            $table->foreignId('food_registration_id')->constrained()->onDelete('cascade'); #外部キー
+            //外部キー制約
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('record_date')->nullable();
-            $table->enum('meal_type', ['朝食', '昼食', '夜食', '間食'])->default(['朝食']);
+            $table->enum('meal_type', ['朝食', '昼食', '夜食', '間食'])->default('朝食');
             $table->time('meal_time')->nullable();
             $table->integer('total_calorie');
             $table->integer('meal_calorie');
