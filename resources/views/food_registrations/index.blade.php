@@ -38,7 +38,7 @@
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $food->food_name }}
+                            <a href="{{ route('food_registrations.edit', ['id'=> $food->id]) }}">{{ $food->food_name }}</a>
                         </td>
                         <td class="px-6 py-4">
                             {{ $food->grams }}
@@ -55,10 +55,11 @@
                         <td class="px-6 py-4">
                             {{ $food->carbohydrate }}
                         </td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
-                                    class="fa-solid fa-trash"></i></a>
-                        </td>
+                            <td class="px-6 py-4 text-right">
+                                <a href="{{ route('food_registrations.destroy', ['id' => $food->id]) }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+                                        class="fa-solid fa-trash"></i></a>
+                            </td>
                     </tr>
                 @endforeach
             </tbody>
