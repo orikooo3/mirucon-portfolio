@@ -56,7 +56,9 @@ class FoodRegistrationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $food = FoodRegistration::find($id);
+
+        return view('food_registrations.edit', compact('food'));
     }
 
     /**
@@ -64,7 +66,16 @@ class FoodRegistrationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $food = FoodRegistration::find($id);
+        $food->food_name = $request->food_name;
+        $food->grams = $request->grams;
+        $food->calory = $request->calory;
+        $food->protein = $request->protein;
+        $food->fat = $request->fat;
+        $food->carbohydrate = $request->carbohydrate;
+        $food->save();
+
+        return to_route('food_registrations.index');
     }
 
     /**
@@ -72,6 +83,9 @@ class FoodRegistrationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $food = FoodRegistration::find($id);
+        $food->delete();
+
+        return to_route('food_registrations.index');
     }
 }
