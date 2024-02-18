@@ -8,4 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class MealRecord extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'record_date',
+        'meal_type',
+        'meal_time',
+        'total_calorie',
+        'meal_calorie',
+        'food_name',
+        'grams',
+        'calory',
+    ];
+
+    // 多対多のリレーション
+    public function foodregistrations()
+    {
+        return $this->belongsToMany(FoodRegistration::class);
+    }
+
+    // 一対多のリレーション
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
