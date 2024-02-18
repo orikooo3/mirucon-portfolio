@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class FoodRegistrationController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * ログインユーザーのみのデータを返す
      */
     public function index()
     {
@@ -45,6 +45,14 @@ class FoodRegistrationController extends Controller
         ]);
 
         return to_route('food_registrations.index');
+    }
+
+    /**
+     * 指定ユーザーのプロファイルを表示
+     */
+    public function show(string $id)
+    {
+        //
     }
 
     /**

@@ -46,6 +46,7 @@ Route::prefix('/food_registrations')
         Route::get('/', 'index')->name('index');
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
+        Route::get('/{id}', 'show')->name('show');
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::post('/{id}', 'update')->name('update');
         Route::get('/{id}/destroy', 'destroy')->name('destroy');
@@ -61,10 +62,12 @@ Route::prefix('/meal_records')
     ->name('meal_records.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/add', 'add')->name('add');
-        Route::get('/confirm', 'confirm')->name('confirm');
-        Route::post('/', 'store')->name('store');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store'); //保存
+        Route::post('/add', 'add')->name('add');  //追加
         Route::get('/{id}', 'show')->name('show');
+        Route::get('/detail', 'detail')->name('detail');
+        Route::get('/{id}/edit', 'edit')->name('edit');
         Route::post('/{id}', 'update')->name('update');
         Route::get('/{id}/destroy', 'destroy')->name('destroy');
         Route::post('/{id}/destroy', 'destroy')->name('destroy');

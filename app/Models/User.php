@@ -45,4 +45,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // 一対多のリレーション
+    public function meal_records()
+    {
+        return $this->hasMany(MealRecord::class);
+    }
+
+    // 一対多のリレーション
+    public function food_registrations()
+    {
+        return $this->hasMany(FoodRegistration::class);
+    }
 }
