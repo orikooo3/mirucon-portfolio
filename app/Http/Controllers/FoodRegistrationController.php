@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FoodRegistration;
+use Illuminate\Support\Facades\Auth;
 
 class FoodRegistrationController extends Controller
 {
@@ -12,9 +13,9 @@ class FoodRegistrationController extends Controller
      */
     public function index()
     {
-        $foods =  FoodRegistration::all();
+        $foods =  Auth::user()->food_registrations;
         // dd($foods);
-        return view('food_registrations.index', compact('foods'));
+        return view('food_registrations.index', ['foods' => $foods]);
     }
 
     /**
@@ -30,8 +31,11 @@ class FoodRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        // $user = Auth::user();
+        // $id = Auth::id();
         // dd($request, $request->food_name);
         FoodRegistration::create([
+            'user_id' => Auth::id(),
             'food_name' => $request->food_name,
             'grams' => $request->grams,
             'calory' => $request->calory,
@@ -41,14 +45,6 @@ class FoodRegistrationController extends Controller
         ]);
 
         return to_route('food_registrations.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
