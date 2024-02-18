@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             //外部キー制約
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->date('record_date');
-            $table->enum('meal_type', ['朝食', '昼食', '夜食', '間食']);
+            $table->date('record_date')->nullable();
+            $table->enum('meal_type', ['朝食', '昼食', '夜食', '間食'])->nullable();
             $table->time('meal_time')->nullable();
-            $table->integer('total_calorie');
-            $table->integer('meal_calorie');
+            $table->integer('total_calorie')->nullable();
+            $table->integer('meal_calorie')->nullable();
+            $table->string('food_name');
+            $table->integer('grams');
+            $table->integer('calory');
             $table->timestamps();
         });
     }
