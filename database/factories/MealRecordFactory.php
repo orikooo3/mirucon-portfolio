@@ -19,7 +19,7 @@ class MealRecordFactory extends Factory
     {
         //'Y/m/d'
         return [
-            'user_id' => User::factory(),             //リレーション定義
+            'user_id' => User::inRandomOrder()->first()->id,             //リレーション定義
             'record_date' => fake()->date(),
             'meal_type' => $this->faker->randomElement($array = ['朝食', '昼食', '夜食', '間食']),
             'meal_time' => fake()->time('H:i'),
