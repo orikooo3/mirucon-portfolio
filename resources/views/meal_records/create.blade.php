@@ -1,61 +1,33 @@
 <x-app-layout>
-    <x-slot name=title>食事確認</x-slot>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <x-slot name=title>記録フォーム作成</x-slot>
+    <div class="flex flex-col items-center min-h-screen pt-6 bg-bkg-color sm:justify-center sm:pt-0">
+        <div class="w-full px-6 py-4 mt-6 overflow-hidden bg-white-color shadow-md sm:max-w-md sm:rounded-xl">
+            <a href="{{ route('meal_records.index') }}"><i class="fas fa-window-close"></i></a>
+            <div class="flex justify-center mb-6 text-2xl max-w-screen font-semibold text-black-color-color">
+                記録フォーム作成
+            </div>
+            <form method="post" action="{{ route('meal_records.create_form') }}">
+                @csrf
+                <div class="flex justify-center py-5">
+                    <x-input-label for="email" :value="'食事の種類'" class="mt-7" />
 
-        <button type="button" onclick="location.href='{{ route('food_registrations.index') }}'">食品一覧</button>
-
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        kcal
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        グラム
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        カロリー
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-
-                    </th>
-                </tr>
-            </thead>
-            @if (!empty($foods))
-                @foreach ($foods as $food)
-                    {{-- <form method="get" action="{{ route('meal_records.registration') }}"> --}}
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->food_name }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->grams }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->calory }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{-- <input type="hidden" name="food_registration_id" value="{{ $food->id }}"> --}}
-                            <a href="{{ route('meal_records.registration', ['id' => $food->id]) }}">登録
-                            </a>
-                        </td>
-                    </tr>
-                    {{-- </form> --}}
-                @endforeach
-            @endif
-            <tr>
-                <td><button type="button"
-                        onclick="location.href='{{ route('meal_records.edit', ['id' => $food->id]) }}'">登録を確認</button>
-            </tr>
-            </tbody>
-        </table>
+                    <select name='meal_type'>
+                        <option value='朝食'>朝食</option>
+                        <option value='昼食'>昼食</option>
+                        <option value='夜食'>夜食</option>
+                        <option value='間食'>間食</option>
+                    </select>
+                </div>
+                <div class="flex justify-center pb-5">
+                    <x-input-label value="'時間の設定'" class="mt-7" />
+                    <input type="time" name="meal_time" required />
+                </div>
+                <div class="flex justify-center items-center h-full">
+                    <button type="submit" class="flex items-center justify-center">
+                        登録
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </x-app-layout>

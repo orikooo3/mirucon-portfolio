@@ -54,10 +54,10 @@
                         </x-dropdown-link>
 
                         <x-dropdown-link :href="route('meal_records.index')">
-                            {{ '食事記録' }}
+                            {{ '記録一覧' }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('meal_records.create')">
+                        <x-dropdown-link :href="route('meal_records.add')">
                             {{ '食品追加' }}
                         </x-dropdown-link>
 
