@@ -10,21 +10,54 @@ use Illuminate\Support\Facades\Auth;
 class MealRecordController extends Controller
 {
     /**
-     * 記録画面に遷移
+     * 記録一覧
      */
     public function index()
     {
-        return view('meal_records.index');
+        $createForm = Auth::user()->meal_records;
+        return view('meal_records.index', compact('createForm'));
     }
 
     /**
-     * 追加画面に遷移(追加)
+     * 記録フォーム作成
      */
     public function create()
     {
         $foods =  Auth::user()->food_registrations;
 
         return view('meal_records.create', ['foods' => $foods]);
+    }
+
+    /**
+     * 記録フォーム保存
+     */
+    public function create_form(Request $request)
+    {
+        $createForm = MealRecord::create([
+            'user_id' => Auth::id(),
+            'meal_type' => $request->meal_type,
+            'meal_time' => $request->meal_time,
+        ]);
+        // dd($createForm);
+
+        return to_route('meal_records.index');
+    }
+
+    /**
+     * 食品追加
+     */
+    public function add()
+    {
+        $foods =  Auth::user()->food_registrations;
+
+        return view('meal_records.add', ['foods' => $foods]);
+    }
+
+    public function add_food()
+    {
+        $foods =  Auth::user()->food_registrations;
+
+        return view('meal_records.add', ['foods' => $foods]);
     }
 
     /**
@@ -35,41 +68,12 @@ class MealRecordController extends Controller
     }
 
     /**
-     * 追加画面の各食品データの登録ボタンをクリック時に食事確認画面に表示させる
-     */
-    public function add(Request $request)
-    {
-        $foodID = $request->input('food_id');
-        $foods = FoodRegistration::find($foodID);
-        // dd($foods);
-        if ($foods) {
-            $mealRecord = MealRecord::create([
-                'user_id' => Auth::id(),
-                'food_name' => $foods->food_name,
-                'grams' => $foods->grams,
-                'calory' =>  $foods->calory,
-            ]);
-            // dd($mealRecord);
-            return to_route('meal_records.show', ['id' => $mealRecord->id]);
-        } else {
-            echo "エラー";
-        }
-    }
-
-    /**
      * 確認画面に遷移
      */
     public function show($id)
     {
-        return view('meal_records.show');
-    }
-
-    /**
-     * 確認画面に遷移(編集)
-     */
-    public function detail()
-    {
-        return view('meal_records.detail');
+        $foods = Auth::user()->food_registrations;
+        return view('meal_records.show', compact('foods'));
     }
 
     /**
@@ -92,5 +96,10 @@ class MealRecordController extends Controller
      */
     public function destroy(string $id)
     {
+        $food = FoodRegistration::find($id);
+        dd($food);
+        $food->delete();
+
+        return to_route('meal_records.show');
     }
 }
