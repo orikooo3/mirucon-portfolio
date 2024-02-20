@@ -25,9 +25,6 @@ class MealRecordFactory extends Factory
             'meal_time' => fake()->time('H:i'),
             'total_calorie' => fake()->randomNumber(4, true),
             'meal_calorie' => fake()->randomNumber(4, true),
-            'food_name' => fake()->word(),
-            'grams' => fake()->randomNumber(3, true),
-            'calory' => fake()->randomNumber(3, true),
             'created_at' => fake()->dateTimeBetween('-1 years'),
             'updated_at' => fake()->dateTimeBetween('-1 years'),
         ];

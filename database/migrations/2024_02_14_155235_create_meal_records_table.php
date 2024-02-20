@@ -20,9 +20,6 @@ return new class extends Migration
             $table->time('meal_time')->nullable();
             $table->integer('total_calorie')->nullable();
             $table->integer('meal_calorie')->nullable();
-            $table->string('food_name')->nullable();
-            $table->integer('grams')->nullable();
-            $table->integer('calory')->nullable();
             $table->timestamps();
         });
     }

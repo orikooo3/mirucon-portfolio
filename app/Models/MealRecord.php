@@ -16,9 +16,6 @@ class MealRecord extends Model
         'meal_time',
         'total_calorie',
         'meal_calorie',
-        'food_name',
-        'grams',
-        'calory',
     ];
 
     // 多対多のリレーション
