@@ -6,11 +6,12 @@ use App\Models\FoodRegistration;
 use App\Models\MealRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
     /**
-     * 記録一覧
+     * 記録一覧遷移
      */
     public function index()
     {
@@ -19,13 +20,11 @@ class MealRecordController extends Controller
     }
 
     /**
-     * 記録フォーム作成
+     * 記録フォーム作成遷移
      */
     public function create()
     {
-        $foods =  Auth::user()->food_registrations;
-
-        return view('meal_records.create', ['foods' => $foods]);
+        return view('meal_records.create');
     }
 
     /**
@@ -38,50 +37,55 @@ class MealRecordController extends Controller
             'meal_type' => $request->meal_type,
             'meal_time' => $request->meal_time,
         ]);
-        // dd($createForm);
+        dd($createForm);
 
         return to_route('meal_records.index');
     }
 
     /**
-     * 食品追加
+     * 食品追加遷移
      */
     public function add()
     {
-        $foods =  Auth::user()->food_registrations;
-
-        return view('meal_records.add', ['foods' => $foods]);
-    }
-
-    public function add_food()
-    {
-        $foods =  Auth::user()->food_registrations;
-
+        $foods =  Auth::user()->meal_records;
+        // dd($foods);
         return view('meal_records.add', ['foods' => $foods]);
     }
 
     /**
-     * 確認画面の完了ボタンをクリックしたときに保存する
+     * 食品追加保存
+     */
+    public function add_food($id)
+    {
+        $foods =  Auth::user()->food_registrations;
+        $mealRecord = MealRecord::find();
+        $mealRecord->foodregistrations()->attach($id);
+        dd($mealRecord);
+        return view('meal_records.add', ['foods' => $foods]);
+    }
+
+    /**
+     * 詳細画面保存
      */
     public function store(Request $request)
     {
     }
 
     /**
-     * 確認画面に遷移
+     * 詳細画面に遷移
      */
     public function show($id)
     {
+        // Log::debug($id);
         $foods = Auth::user()->food_registrations;
         return view('meal_records.show', compact('foods'));
     }
 
     /**
-     * 確認画面に遷移(編集)
+     *
      */
     public function edit()
     {
-        return view('meal_records.edit');
     }
 
     /**
@@ -97,7 +101,7 @@ class MealRecordController extends Controller
     public function destroy(string $id)
     {
         $food = FoodRegistration::find($id);
-        dd($food);
+
         $food->delete();
 
         return to_route('meal_records.show');
