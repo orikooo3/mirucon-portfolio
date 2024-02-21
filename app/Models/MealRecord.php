@@ -21,7 +21,7 @@ class MealRecord extends Model
     // 多対多のリレーション
     public function foodregistrations()
     {
-        return $this->belongsToMany(FoodRegistration::class)->withTimestamps();
+        return $this->belongsToMany(FoodRegistration::class);
     }
 
     // 一対多のリレーション
