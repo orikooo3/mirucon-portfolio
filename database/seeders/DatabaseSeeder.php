@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         //開発環境の時だけにテストされる
         if (config('app.env') == 'local') {
             $this->call([
-                UsersTableSeeder::class,
-                FoodRegistrationsTableSeeder::class,
-                MealRecordsTableSeeder::class,
-                FoodRegistrationMealRecordsTableSeeder::class,
+                UserTableSeeder::class,
+                FoodRegistrationTableSeeder::class,
+                MealRecordTableSeeder::class,
+                FoodRegistrationMealRecordTableSeeder::class,
             ]);
         }
     }

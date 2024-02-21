@@ -5,16 +5,16 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use Ramsey\Uuid\Type\Time;
+use App\Models\MealRecord;
 
-class UsersTableSeeder extends Seeder
+class MealRecordTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
-        User::factory(5)->create();
+        MealRecord::factory(4)->create();
     }
 }
