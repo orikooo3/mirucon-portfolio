@@ -57,10 +57,6 @@
                             {{ '記録一覧' }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('meal_records.add')">
-                            {{ '食品追加' }}
-                        </x-dropdown-link>
-
                         <x-dropdown-link :href="route('food_registrations.index')">
                             {{ '食品一覧' }}
                         </x-dropdown-link>
