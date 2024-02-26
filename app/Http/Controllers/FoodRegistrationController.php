@@ -31,6 +31,7 @@ class FoodRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->all());
         // $user = Auth::user();
         // $id = Auth::id();
         // dd($request, $request->food_name);
