@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FoodRegistration;
+use Illuminate\Support\Facades\Auth;
 
 class FoodRegistrationController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * ログインユーザーのみのデータを返す
      */
     public function index()
     {
-        $foods =  FoodRegistration::all();
+        $foods =  Auth::user()->food_registrations;
         // dd($foods);
-        return view('food_registrations.index', compact('foods'));
+        return view('food_registrations.index', ['foods' => $foods]);
     }
 
     /**
@@ -30,8 +31,12 @@ class FoodRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump($request->all());
+        // $user = Auth::user();
+        // $id = Auth::id();
         // dd($request, $request->food_name);
         FoodRegistration::create([
+            'user_id' => Auth::id(),
             'food_name' => $request->food_name,
             'grams' => $request->grams,
             'calory' => $request->calory,
@@ -44,7 +49,7 @@ class FoodRegistrationController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 指定ユーザーのプロファイルを表示
      */
     public function show(string $id)
     {

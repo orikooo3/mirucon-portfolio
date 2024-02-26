@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('foodregistration_mealrecord', function (Blueprint $table) {
+        Schema::create('food_registration_meal_record', function (Blueprint $table) {
             $table->id();
             //外部キー制約
-            $table->foreignId('meal_record_id')->constrained()->onDelete('cascade');
-            //外部キー制約
             $table->foreignId('food_registration_id')->constrained()->onDelete('cascade');
+            //外部キー制約
+            $table->foreignId('meal_record_id')->constrained()->onDelete('cascade');
+            // $table->timestamps();
+            //プライマリーキー
+            // $table->primary(['meal_record_id', 'food_registration_id']);
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('foodregistration_mealrecord');
+        Schema::dropIfExists('food_registration_meal_record');
     }
 };

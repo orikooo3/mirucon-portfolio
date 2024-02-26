@@ -9,7 +9,7 @@
                         食品名
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        グラム数
+                        グラム
                     </th>
                     <th scope="col" class="px-6 py-3">
                         カロリー
@@ -30,37 +30,42 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="button" onclick="location.href='{{ route('food_registrations.create') }}'"
-                            value="食品を追加する"></td>
+                    <td>
+                        <button type="button"
+                            onclick="location.href='{{ route('food_registrations.create') }}'">食品を登録</button>
+                    </td>
                 </tr>
                 @foreach ($foods as $food)
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <a href="{{ route('food_registrations.edit', ['id'=> $food->id]) }}">{{ $food->food_name }}</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->grams }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->calory }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->protein }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->fat }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $food->carbohydrate }}
-                        </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="{{ route('food_registrations.destroy', ['id' => $food->id]) }}"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
-                                        class="fa-solid fa-trash"></i></a>
+                    <form method="post" action="{{ route('food_registrations.destroy', $food) }}">
+                        @csrf
+                        @method('delete')
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <a href="{{ route('food_registrations.edit', $food) }}">{{ $food->food_name }}</a>
                             </td>
-                    </tr>
+                            <td class="px-6 py-4">
+                                {{ $food->grams }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $food->calory }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $food->protein }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $food->fat }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $food->carbohydrate }}
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </form>
                 @endforeach
             </tbody>
         </table>

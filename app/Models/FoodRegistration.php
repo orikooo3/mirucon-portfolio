@@ -10,6 +10,7 @@ class FoodRegistration extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'food_name',
         'grams',
         'calory',
@@ -17,4 +18,16 @@ class FoodRegistration extends Model
         'fat',
         'carbohydrate',
     ];
+
+    // 多対多のリレーション
+    public function mealRecords()
+    {
+        return $this->belongsToMany(MealRecord::class);
+    }
+
+    // 一対多のリレーション
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

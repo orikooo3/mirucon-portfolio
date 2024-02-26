@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call(UsersSeeder::class);
+
+        //開発環境の時だけにテストされる
+        if (config('app.env') == 'local') {
+            $this->call([
+                UserTableSeeder::class,
+                FoodRegistrationTableSeeder::class,
+                MealRecordTableSeeder::class,
+                FoodRegistrationMealRecordTableSeeder::class,
+            ]);
+        }
     }
 }
