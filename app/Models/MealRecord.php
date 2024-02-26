@@ -19,7 +19,7 @@ class MealRecord extends Model
     ];
 
     // 多対多のリレーション
-    public function foodregistrations()
+    public function foodRegistrations()
     {
         return $this->belongsToMany(FoodRegistration::class);
     }
