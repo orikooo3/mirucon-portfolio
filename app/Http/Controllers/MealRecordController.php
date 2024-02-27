@@ -62,7 +62,7 @@ class MealRecordController extends Controller
      */
     public function add_food($meal_record_id, $food_id)
     {
-        // FoodRegistrationモデルのid取得
+        // FoodRegistrationモデルのid抽出
         $food_id = FoodRegistration::find($food_id);
         // if ($food_id == null) {
         //     return 'error';
@@ -73,9 +73,9 @@ class MealRecordController extends Controller
     }
 
     /**
-     * 記録詳細(確認画面)保存
+     * 記録詳細(確認画面)抽出
      */
-    public function store(Request $request)
+    public function store()
     {
     }
 
@@ -85,11 +85,11 @@ class MealRecordController extends Controller
     public function show(Request $request)
     {
 
-        // $food_registration_id = FoodRegistrationMealRecord::get('food_registration_id'); // 中間テーブル: food_registration_idの取得
-        // $meal_record_id = FoodRegistrationMealRecord::get('meal_record_id'); // 中間テーブル: meal_record_idの取得
+        // $food_registration_id = FoodRegistrationMealRecord::get('food_registration_id'); // 中間テーブル: food_registration_idの抽出
+        // $meal_record_id = FoodRegistrationMealRecord::get('meal_record_id'); // 中間テーブル: meal_record_idの抽出
         $mealRecords = MealRecord::findOrFail($request->id);
         // 記録詳細画面のMealRecordIDと紐付ける
-        $foods = MealRecord::find($mealRecords->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを取得できてなかった
+        $foods = MealRecord::find($mealRecords->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを抽出できてなかった
         // dd($food_name + $grams + $calory);
         // dd($foods);
         // dd(array_merge_recursive($food_name, $grams, $calory));
@@ -120,7 +120,7 @@ class MealRecordController extends Controller
      */
     public function destroy($food_id)
     {
-        // FoodRegistrationモデルのid取得
+        // FoodRegistrationモデルのid抽出
         $food_id = FoodRegistration::find($food_id);
         // dd($food_id);
 
