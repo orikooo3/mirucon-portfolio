@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
+    public function dashboard(){
+        $a = Auth::user()->meal_records->pluck('id');
+        $b = MealRecord::find($a);
+
+        return view('dashboard', compact('b'));
+    }
     /**
      * 記録一覧(完了画面)遷移
      */
@@ -127,6 +133,12 @@ class MealRecordController extends Controller
     {
     }
 
+    public function record_destroy ($record_id){
+        $delete_record = MealRecord::find($record_id)->delete();
+        // dd($delete_record);
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -139,7 +151,7 @@ class MealRecordController extends Controller
         // dd($food_id);
 
         $food_record_id = FoodRegistrationMealRecord::where('food_registration_id', $food_id->id)->value('id');
-        $deleteID =  FoodRegistrationMealRecord::find($food_record_id)->delete();
+        $delete_food =  FoodRegistrationMealRecord::find($food_record_id)->delete();
         // dd($deleteID);
         return back();
     }

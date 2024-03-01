@@ -21,9 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [MealRecordController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,9 +33,13 @@ Route::middleware('auth')->group(function () {
 
 /**
  * 食品登録用ルーティング
- * ・prefix: URLの接頭辞
- * ・name: 名前付きルートの接頭辞
- */
+ * prefix: URLの接頭辞
+ * name: 名前付きルートの接頭辞
+ * middleware: リクエストが特定の条件を満たしているかどうかを確認する(auth: ログイン済みかどうか確認する、verified: 登録したメールアドレスを確認する)
+ * contoroller: コントローラーを定義できる
+ * name: 名前付きルート
+ * group: ルートをグループ化できる
+ *  */
 Route::prefix('/food_registrations')
     ->middleware(['auth'])
     ->controller(FoodRegistrationController::class)
@@ -69,7 +71,7 @@ Route::prefix('/meal_records')
         Route::get('/{id}', 'show')->name('show'); // 記録詳細に遷移
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
-        Route::delete('/{id}/form_destroy', 'form_destroy')->name('form_destroy'); // フォームの削除
+        Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy'); // フォームの削除
         Route::delete('/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
     });
 
