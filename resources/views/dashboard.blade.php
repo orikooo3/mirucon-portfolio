@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-calendar/>
     <x-slot name=title>本日の記録</x-slot>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <button type="button" onclick="location.href='{{ route('meal_records.index') }}'">本日の記録を追加</button>
