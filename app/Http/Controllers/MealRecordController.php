@@ -16,8 +16,20 @@ class MealRecordController extends Controller
      */
     public function index()
     {
-        $createForm = Auth::user()->meal_records;
-        return view('meal_records.index', compact('createForm'));
+        // $aに含まれるIDを持つすべてのMealRecordレコードを取得
+        $a = Auth::user()->meal_records->pluck('id');
+
+        $b = MealRecord::find($a);
+        // dd($b);
+        $records = [];  $foods = [];
+        foreach ($b as $mealRecord) {
+            $records[] = $mealRecord;
+            foreach ($mealRecord->foodRegistrations as $foodRegistration) {
+                $foods[] = $foodRegistration;
+            }
+        }
+        // dd($records, $foods);
+        return view('meal_records.index', compact('records', 'foods'));
     }
 
     /**
@@ -46,10 +58,10 @@ class MealRecordController extends Controller
     /**
      * 食品追加(入力画面)遷移
      */
-    public function add($record_id)
+    public function add($meal_record_id)
     {
         // 記録フォームのID
-        $mealRecords = MealRecord::find($record_id);
+        $mealRecords = MealRecord::find($meal_record_id);
         // dd($meal_id);
         // ログイン中のユーザーが登録した食品を表示する
         $foods =  Auth::user()->food_registrations;
@@ -118,15 +130,16 @@ class MealRecordController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($food_id)
+    public function destroy($food_id) // Call to a member functionエラー
     {
+        // dd($food_id);
         // FoodRegistrationモデルのid抽出
         $food_id = FoodRegistration::find($food_id);
         // dd($food_id);
 
         $food_record_id = FoodRegistrationMealRecord::where('food_registration_id', $food_id->id)->value('id');
         $deleteID =  FoodRegistrationMealRecord::find($food_record_id)->delete();
-        // dd($deleteID);
+        dd($deleteID);
         return back();
     }
 }

@@ -63,14 +63,14 @@ Route::prefix('/meal_records')
         Route::get('/', 'index')->name('index'); // 記録一覧
         Route::get('/create', 'create')->name('create'); // 記録フォーム作成
         Route::post('/create_form', 'create_form')->name('create_form'); // 記録フォームの保存
-        Route::get('/{id}/add', 'add')->name('add'); // 食品追加に遷移
+        Route::get('/{meal_record_id}/add', 'add')->name('add'); // 食品追加に遷移
         Route::post('/{meal_record_id}/{food_id}/add_food', 'add_food')->name('add_food'); // 食品追加
-        Route::post('/', 'store')->name('store'); // 記録詳細の保存
+        Route::get('/{record_id}/store', 'store')->name('store'); // 記録詳細の保存
         Route::get('/{id}', 'show')->name('show'); // 記録詳細に遷移
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{id}/form_destroy', 'form_destroy')->name('form_destroy'); // フォームの削除
-        Route::delete('/{meal_record_id}/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
+        Route::delete('/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
     });
 
 // Route::get('meals', [MealRecordController::class, 'index']);

@@ -23,7 +23,7 @@
                 @foreach ($foods as $food)
                     <tbody>
                         <form method="post"
-                            action="{{ route('meal_records.destroy', ['meal_record_id' => $mealRecords->id, 'food_id' => $food->id]) }}">
+                            action="{{ route('meal_records.destroy', ['food_id' => $food->id]) }}">
                             @csrf
                             @method('delete')
                             <tr
@@ -49,13 +49,15 @@
             @endif
             <tr>
                 <td>
-                    <button type="button"
-                        onclick="location.href='{{ route('meal_records.add', ['id' => $mealRecords->id]) }}'">食品の追加</button>
+                    <button type="button" onclick="location.href='{{ route('meal_records.add', ['meal_record_id' => $mealRecords->id]) }}'">食品の追加</button>
                 </td>
             </tr>
-            <tr>
-                <td><button type="button" onclick="location.href='{{ route('meal_records.index') }}'">完了</button>
-            </tr>
+                <tr>
+                    <td>
+                       <button type="button" onclick="location.href='{{ route('meal_records.index') }}'">完了</button>
+                    </td>
+                </tr>
+            </form>
             </tbody>
         </table>
     </div>
