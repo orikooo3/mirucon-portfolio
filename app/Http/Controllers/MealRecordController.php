@@ -21,15 +21,15 @@ class MealRecordController extends Controller
 
         $b = MealRecord::find($a);
         // dd($b);
-        $records = [];  $foods = [];
-        foreach ($b as $mealRecord) {
-            $records[] = $mealRecord;
-            foreach ($mealRecord->foodRegistrations as $foodRegistration) {
-                $foods[] = $foodRegistration;
-            }
-        }
+        // $records = [];  $foods = [];
+        // foreach ($b as $mealRecord) {
+        //     $records[] = $mealRecord;
+        //     foreach ($mealRecord->foodRegistrations as $foodRegistration) {
+        //         $foods[] = $foodRegistration;
+        //     }
+        // }
         // dd($records, $foods);
-        return view('meal_records.index', compact('records', 'foods'));
+        return view('meal_records.index', compact('b'));
     }
 
     /**
@@ -130,8 +130,9 @@ class MealRecordController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($food_id) // Call to a member functionエラー
+    public function destroy($food_id)
     {
+        // 受け取る引数は一つだから'meal_record_id'を Route::delete('/{food_id}/destroy', 'destroy')->name('destroy');から {meal_record_id}を削除した
         // dd($food_id);
         // FoodRegistrationモデルのid抽出
         $food_id = FoodRegistration::find($food_id);
@@ -139,7 +140,7 @@ class MealRecordController extends Controller
 
         $food_record_id = FoodRegistrationMealRecord::where('food_registration_id', $food_id->id)->value('id');
         $deleteID =  FoodRegistrationMealRecord::find($food_record_id)->delete();
-        dd($deleteID);
+        // dd($deleteID);
         return back();
     }
 }
