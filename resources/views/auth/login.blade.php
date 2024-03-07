@@ -1,6 +1,4 @@
 <x-guest-layout>
-    <x-slot name="title">ログイン</x-slot>
-
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -14,15 +12,15 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" class="mt-7" />
-            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')"
-                required autofocus />
+            <x-text-input id="email" class="w-full mt-1" type="email" name="email" :value="old('email')" required
+                autofocus />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block w-full mt-1" type="password" name="password" required
+            <x-text-input id="password" class="w-full mt-1" type="password" name="password" required
                 autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -50,14 +48,15 @@
             @endif
         </div>
         <div class="flex items-center justify-center mt-7">
-            <x-refer-button>
-                {{ __('Log in') }}
-            </x-refer-button>
+            <x-submit-button>
+                <x-slot name="normal">{{ __('Log in') }}</x-slot>
+            </x-submit-button>
         </div>
     </form>
     <!-- Already have an account?-->
     <div class="flex flex-col items-center w-full mt-12">
         <p class="text-xs font-thin mb-3 text-explain-color">アカウントをお持ちではないですか？</p>
-        <x-refer-button onclick="location.href='{{ route('register') }}'">新規登録</x-refer-button>
+        <x-submit-button onclick="location.href='{{ route('register') }}'"><x-slot
+                name="normal">新規登録</x-slot></x-submit-button>
     </div>
 </x-guest-layout>

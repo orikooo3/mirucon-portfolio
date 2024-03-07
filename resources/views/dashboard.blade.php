@@ -1,31 +1,32 @@
 <x-app-layout>
-    <x-calendar/>
+    <x-calendar />
     <x-slot name=title>本日の記録</x-slot>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <button type="button" onclick="location.href='{{ route('meal_records.index') }}'">本日の記録を追加</button>
-         @if (!empty($b))
+    <div class="my-3 w-screen flex justify-center items-center flex-col sm:rounded-lg">
+        <x-submit-button type="button" class="my-5" onclick="location.href='{{ route('meal_records.index') }}'">
+            <x-slot name='max'><i class="fa-regular fa-plus mt-1"></i>本日の記録を追加</x-slot>
+        </x-submit-button>
+        @if (!empty($b))
             @foreach ($b as $record)
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
+                <table class="w-3/5 text-sm  text-left">
+                    <thead class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
+                        <tr class="">
                             <th scope="col" class="px-6 py-3">
                                 {{ $record->meal_type }}
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6">
                                 {{ $record->meal_time }}
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" class="px-6">
                                 {{ $record->meal_calory }}kcal
                             </th>
                         </tr>
                     </thead>
                     @if (!empty($record))
                         @foreach ($record->foodRegistrations as $food)
-                            <tbody>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <tbody
+                                class="text-black-color bg-white-color border-b dark:text-black dark:bg-white-color dark:border-explain-color-color">
+                                <tr>
+                                    <td scope="row" class="px-6 text-xl text-gray-900 dark:text-black-color">
                                         {{ $food->food_name }}
                                     </td>
                                     <td class="px-6 py-4">

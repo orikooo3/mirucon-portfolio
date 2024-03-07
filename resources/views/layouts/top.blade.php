@@ -14,6 +14,7 @@
 
 <body class="antialiased">
     @include('layouts.navigation')
+
     <!-- Page Content -->
     <main>
         {{ $slot }}
