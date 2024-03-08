@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 body {
+    /* このコードだけでフォントが指定される */
     font-family: "Noto Sans JP";
 }
 

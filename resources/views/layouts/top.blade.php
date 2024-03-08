@@ -14,9 +14,11 @@
 
 <body class="antialiased">
     @include('layouts.navigation')
-    <!-- Page Content -->
     <main>
-        {{ $slot }}
+        <!-- Page Content -->
+        <div>
+            {{ $slot }}
+        </div>
     </main>
 </body>
 

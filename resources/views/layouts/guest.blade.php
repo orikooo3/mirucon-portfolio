@@ -12,14 +12,6 @@
 
 <body class="antialiased text-black-color">
     @include('layouts.navigation')
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-main-color shadow md:z-40">
-            <div class="p-6 mx-auto text-xl font-semibold leading-tight text-white-color">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
 
     <div class="flex flex-col items-center min-h-screen pt-6 bg-bkg-color sm:justify-center sm:pt-0">
         <!-- Page Content -->

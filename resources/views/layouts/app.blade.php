@@ -12,21 +12,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="antialiased">
     @include('layouts.navigation')
-    <div class="min-h-screen bg-bkg-color">
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-main-color shadow md:z-40">
-                <div class="p-6 mx-auto text-xl font-semibold leading-tight text-white-color">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
+    <main class="">
         <!-- Page Content -->
+        <div class="h-screen">
             {{ $slot }}
-    </div>
+        </div>
+    </main>
 </body>
 
 </html>

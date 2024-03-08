@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }" class="bg-main-color border-b border-black">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-3 lg:px-3">
         <div class="flex justify-between h-16">
             <div class="flex">
                 @if (Auth::check())
@@ -37,11 +37,11 @@
                                 </div>
                             </button>
                         @else
-                            <button
+                            <button onclick="location.href='{{route('login')}}'"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 ログイン
                             </button>
-                            <button
+                            <button onclick="location.href='{{route('register')}}'"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 登録
                             </button>
