@@ -48,15 +48,16 @@
             @endif
         </div>
         <div class="flex items-center justify-center mt-7">
-            <x-submit-button>
-                <x-slot name="normal">{{ __('Log in') }}</x-slot>
-            </x-submit-button>
+            <x-action-button>
+                {{ __('Log in') }}
+            </x-action-button>
         </div>
     </form>
     <!-- Already have an account?-->
-    <div class="flex flex-col items-center w-full mt-12">
+    <div class="flex flex-col items-center w-full mt-7">
         <p class="text-xs font-thin mb-3 text-explain-color">アカウントをお持ちではないですか？</p>
-        <x-submit-button onclick="location.href='{{ route('register') }}'"><x-slot
-                name="normal">新規登録</x-slot></x-submit-button>
+        <x-action-button onclick="location.href='{{ route('register') }}'">
+            新規登録
+        </x-action-button>
     </div>
 </x-guest-layout>

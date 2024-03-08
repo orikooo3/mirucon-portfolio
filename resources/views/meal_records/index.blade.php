@@ -1,59 +1,62 @@
 <x-app-layout>
     <x-slot name=title>記録一覧</x-slot>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
-        <a href="{{ route('meal_records.create') }}"><i class="fa-solid fa-circle-plus">記録フォーム作成</i></a>
-        @if (!empty($b))
-            @foreach ($b as $record)
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <form method="post" action="{{ route('meal_records.record_destroy', ['record_id' => $record->id]) }}">
-                        @csrf
-                        @method('delete')
-                        <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ $record->meal_type }}
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    {{ $record->meal_time }}
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <a href="{{ route('meal_records.show', $record->id) }}"><i
-                                            class="fa-solid fa-pencil"></i></a>
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <button type="submit"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
-                                            class="fa-solid fa-trash"></i></button>
-                                </th>
-                            </tr>
-                        </thead>
-                    </form>
-                    @if (!empty($record))
-                        @foreach ($record->foodRegistrations as $food)
-                            <tbody>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $food->food_name }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $food->grams }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $food->calory }}
-                                    </td>
-                                    <td class="px-6 py-4">
-
-                                    </td>
+    {{-- ここに記録日と総カロリーを表示する --}}
+    <div class="relative overflow-y-auto shadow-md sm:rounded-lg bg-bkg-color">
+        <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
+            <x-action-button type="button" class="my-5 w-64 " onclick="location.href='{{ route('meal_records.create') }}'">
+                <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成
+            </x-action-button>
+            @if (!empty($b))
+                @foreach ($b as $record)
+                    <table class="w-3/5 text-sm text-left mb-10">
+                        <form method="post"
+                            action="{{ route('meal_records.record_destroy', ['record_id' => $record->id]) }}">
+                            @csrf
+                            @method('delete')
+                            <thead
+                                class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        <a href="{{ route('dashboard') }}" class="mr-9"><i class="fa-regular fa-less-than"></i>戻る</a>{{ $record->meal_type }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        {{ $record->meal_time }}
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <a href="{{ route('meal_records.show', $record->id) }}"><i
+                                                class="fa-solid fa-pencil"></i></a>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <button type="submit" class="font-medium hover:underline"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </th>
                                 </tr>
-                            </tbody>
-                        @endforeach
-                    @endif
-                </table>
-                <br>
-            @endforeach
-        @endif
+                            </thead>
+                        </form>
+                        @if (!empty($record))
+                            @foreach ($record->foodRegistrations as $food)
+                                <tbody
+                                    class="text-black-color bg-white-color border-b dark:text-black-colork dark:bg-white-color dark:border-explain-color-color">
+                                    <tr class="">
+                                        <td scope="row" class="px-6 text-xl">
+                                            {{ $food->food_name }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $food->grams }}g
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $food->calory }}kcal
+                                        </td>
+                                        <td class="px-6 py-4">
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            @endforeach
+                        @endif
+                    </table>
+                @endforeach
+            @endif
+        </div>
     </div>
 </x-app-layout>

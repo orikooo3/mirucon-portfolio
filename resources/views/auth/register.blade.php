@@ -79,9 +79,9 @@
         </div>
 
         <div class="flex flex-col  items-center w-full  mt-9">
-            <x-submit-button>
-                <x-slot name='normal'>{{ __('Register') }}</x-slot>
-            </x-submit-button>
+            <x-action-button>
+                {{ __('Register') }}
+            </x-action-button>
 
             <a class="mt-3 text-xs tet-explain-color font-thin hover:opacity-70 hover:underline rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-color"
                 href="{{ route('login') }}">

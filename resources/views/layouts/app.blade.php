@@ -14,12 +14,12 @@
 
 <body class="antialiased">
     @include('layouts.navigation')
-    <div class="flex flex-col items-center min-h-screen pt-6 bg-bkg-color sm:justify-center sm:pt-0">
+    <main class="">
         <!-- Page Content -->
-        <div class="w-full px-6 py-4 mt-6 overflow-hidden bg-white-color shadow-md sm:max-w-md sm:rounded-xl">
+        <div class="h-screen">
             {{ $slot }}
         </div>
-    </div>
+    </main>
 </body>
 
 </html>
