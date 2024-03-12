@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FoodRegistrationController;
 use App\Http\Controllers\MealRecordController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +19,20 @@ use App\Http\Controllers\MealRecordController;
 */
 
 Route::get('/', function () {
+    // if (Auth::user()) {
+    //     return route('dashboard');
+    // }
     return view('welcome');
 })->name('welcome');
 
 Route::get('/dashboard', [MealRecordController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::prefix('/profile')
+    ->middleware('auth')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 
 // Route::resource('food_registration', FoodRegistrationController::class);
 
