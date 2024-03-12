@@ -47,8 +47,38 @@
             @endif
         </div>
 
+        {{-- 年齢 --}}
+        <div class="">
+            <x-input-label for="name" :value="__('Age')" />
+            <x-text-input id="name" name="age" type="number" class="mt-1 block h-9 w-20" :value="old('height', $user->age)"
+                required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        {{-- 性別 --}}
+        <div class="">
+            <x-input-label :value="__('Sex')" />
+            <select name="sex"
+                class="block text-sm mt-1 h-9 w-20 border-gray-300 focus:border-main-color focus:ring-main-color rounded-md shadow-sm">
+                @if ($user->sex == "0")
+                <option selected :value="old('sex', $user->sex)" class="">男性</option>
+                <option :value="old('sex', $user->sex)" class="">女性</option>
+                @elseif($user->sex == "1")
+                <option :value="old('sex', $user->sex)" class="">男性</option>
+                <option selected :value="old('sex', $user->sex)" class="">女性</option>
+                @endif
+            </select>
+        </div>
+
+        <div>
+            <x-input-label for="height" :value="__('Height')" />
+            <x-text-input id="height" name="height" type="number" class="mt-1 block h-9 w-20" step="0.1" :value="old('height', $user->height)"
+                required autofocus autocomplete="height" />
+            <x-input-error class="mt-2" :messages="$errors->get('height')" />
+        </div>
+
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-action-button class="text-xs w-16">{{ __('Save') }}</x-action-button>
 
             @if (session('status') === 'profile-updated')
                 <p
