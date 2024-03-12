@@ -26,7 +26,13 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // dd($request);
+        /**
+         * validate メソッドはバリデーションルールを通過していないリクエストの値を含まない。
+         * validated メソッドを介して得た値は不正な入力を含まない安全な値である
+         */
+       $test = $request->user()->fill($request->validated());
+    //    dd($test);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
