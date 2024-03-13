@@ -6,7 +6,7 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- ユーザー名 -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
@@ -14,7 +14,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
+        <!-- メールアドレス -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
@@ -22,7 +22,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
+        <!-- パスワード -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
@@ -32,7 +32,7 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
+        <!-- 確認パスワード -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
@@ -43,7 +43,7 @@
         </div>
 
         <div class="flex justify-start mt-4">
-            <!-- age  -->
+            <!-- 年齢  -->
             <div class="mr-10">
                 <x-input-label for="age" :value="__('Age')" />
                 <div class="flex">
@@ -55,18 +55,24 @@
                 </div>
             </div>
 
-            <!-- sex  -->
+            <!-- 性別  -->
             <div class="">
                 <x-input-label :value="__('Sex')" />
-                <select name="sex"
-                    class="block text-sm mt-1 h-9 w-20 border-gray-300 focus:border-main-color focus:ring-main-color rounded-md shadow-sm">
-                    <option value="" class="">選択</option>
-                    <option value="0" class="">男性</option>
-                    <option value="1" class="">女性</option>
-                </select>
+                 <div class="mt-4 ">
+                    <label for="female" class="text-xs">男性
+                        <x-text-input id="female" type="radio" name="sex" :value="0"
+                            class="text-main-color bg-main-hover-color border-explain-color focus:ring-main-color focus:ring-2 "
+                            Frequired autofocus autocomplete="sex" />
+                    </label>
+                    <label for="female" class="ml-3 text-xs">女性
+                        <x-text-input id="female" type="radio" name="sex" :value="1"
+                            class=" text-main-color bg-main-hover-color border-explain-color focus:ring-main-color focus:ring-2 "
+                            Frequired autofocus autocomplete="sex" />
+                    </label>
+                </div>
             </div>
 
-            <!-- height  -->
+            <!-- 身長  -->
             <div class="ml-10">
                 <x-input-label for="height" :value="__('Height')" />
                 <div class="flex">
