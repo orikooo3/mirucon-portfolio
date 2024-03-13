@@ -17,6 +17,7 @@
         @csrf
         @method('patch')
 
+        {{-- ユーザー名 --}}
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
@@ -24,6 +25,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        {{-- メールアドレス  --}}
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
@@ -52,30 +54,35 @@
 
         {{-- 年齢 --}}
         <div class="">
-            <x-input-label for="name" :value="__('Age')" />
-            <x-text-input id="name" name="age" type="number" class="mt-1 block h-9 w-20" :value="old('height', $user->age)"
-                required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="age" :value="__('Age')" />
+            <x-text-input id="age" name="age" type="number" class="mt-1 block h-9 w-24" :value="old('age', $user->age)"
+                required autofocus autocomplete="age" />
+            <x-input-error class="mt-2" :messages="$errors->get('age')" />
         </div>
 
         {{-- 性別 --}}
         <div class="">
-            <x-input-label :value="__('Sex')" />
-            <select name="sex"
-                class="block text-sm mt-1 h-9 w-20 border-gray-300 focus:border-main-color focus:ring-main-color rounded-md shadow-sm">
-                @if ($user->sex == '0')
-                    <option selected :value="old('sex', $user - > sex)" class="">男性</option>
-                    <option :value="old('sex', $user - > sex)" class="">女性</option>
-                @elseif($user->sex == '1')
-                    <option :value="old('sex', $user - > sex)" class="">男性</option>
-                    <option selected :value="old('sex', $user - > sex)" class="">女性</option>
-                @endif
-            </select>
+            <x-input-label for="sex" :value="__('Sex')" />
+            <div class="mt-4 ">
+                <div class="mt-4 flex">
+                    <div class="">
+                        <label for="male" class="text-xs">男性</label>
+                        <input id="male" type="radio" value="{{old('sex')}}"
+                            {{ old('sex', $user->sex) == 0 ? 'checked' : '' }} name="sex" class="">
+                    </div>
+                    <div class=" ">
+                        <label for="female" class="text-xs ml-3">女性</label>
+                        <input checked id="female" type="radio" value="{{old('sex')}}"
+                            {{ old('sex', $user->sex) == 1 ? 'checked' : '' }} name="sex" class="">
+                    </div>
+                </div>
+            </div>
         </div>
 
+        {{-- 身長 --}}
         <div>
             <x-input-label for="height" :value="__('Height')" />
-            <x-text-input id="height" name="height" type="number" class="mt-1 block h-9 w-20" step="0.1"
+            <x-text-input id="height" name="height" type="number" class="mt-1 block h-9 w-24" step="0.1"
                 :value="old('height', $user->height)" required autofocus autocomplete="height" />
             <x-input-error class="mt-2" :messages="$errors->get('height')" />
         </div>
