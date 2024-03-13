@@ -14,8 +14,6 @@ export default {
             colors: {
                 "main-color": "#294A62",
                 "main-hover-color": "#E2EBF2",
-                "sub-color": "#F17E5C",
-                "sub-hover-color": "#FAD9D0",
                 "white-color": "#FDFDFD",
                 "black-color": "#333333",
                 "explain-color": "#626D72",
