@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('food_registrations', function (Blueprint $table) {
-            //
+            $table->tinyInteger('quantity')->default(1); //カラムの追加
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('food_registrations', function (Blueprint $table) {
-            //
+            $table->dropColumn('quantity'); // カラムの削除
         });
     }
 };
