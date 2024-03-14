@@ -16,7 +16,7 @@
     @include('layouts.navigation')
     <main class="">
         <!-- Page Content -->
-        <div class="h-screen">
+        <div class="h-screen bg-bkg-color">
             {{ $slot }}
         </div>
     </main>

@@ -12,16 +12,14 @@ export default {
     theme: {
         extend: {
             colors: {
-                "main-color": "#294A62",
-                "main-hover-color": "#E2EBF2",
-                "sub-color": "#F17E5C",
-                "sub-hover-color": "#FAD9D0",
+                "main-color": "#4680A8",
+                "main-dark-color": "#3D7193",
                 "white-color": "#FDFDFD",
                 "black-color": "#333333",
                 "explain-color": "#626D72",
                 "bkg-color": "#F1F2F4",
                 "alarm-color": "#BE0A2C",
-                "alarm-hover-color": "#FDE1E7",
+                "alarm-dark-color": "#970404",
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],

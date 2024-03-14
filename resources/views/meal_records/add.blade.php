@@ -4,7 +4,7 @@
         <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
             <x-action-button type="button" class="mb-4"
                 onclick="location.href='{{ route('food_registrations.index') }}'">食品一覧</x-action-button>
-            <table class="w-3/5 text-sm text-left rtl:text-right ">
+            <table class="w-2/5 text-sm text-left rtl:text-right ">
                 <thead class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
                     <tr>
                         <th scope="col" class="px-6 py-3">

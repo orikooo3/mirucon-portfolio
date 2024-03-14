@@ -6,7 +6,7 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- ユーザー名 -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
@@ -14,7 +14,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
+        <!-- メールアドレス -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
@@ -22,7 +22,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
+        <!-- パスワード -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
@@ -32,7 +32,7 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
+        <!-- 確認パスワード -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
@@ -43,38 +43,43 @@
         </div>
 
         <div class="flex justify-start mt-4">
-            <!-- age  -->
-            <div class="mt-4">
+            <!-- 年齢  -->
+            <div class="mr-10">
                 <x-input-label for="age" :value="__('Age')" />
-                <x-text-input id="age" class="block mt-1 h-9 w-20" type="number" pattern="^([1-9]\d*|0)(\.\d+)?$"
-                    min="0" name="age" :value="old('age')" required autofocus autocomplete="age" />
-                <x-input-error :messages="$errors->get('age')" class="mt-2" />
-            </div>
-
-            <!-- sex  -->
-            <div class="mt-4 mx-10">
-                <x-input-label :value="__('Sex')" />
-                <div class="mt-2 ">
-                    <label for="female" class="text-xs">男性
-                        <x-text-input id="female" type="radio" name="sex" :value="0"
-                            class="text-main-color bg-main-hover-color border-explain-color focus:ring-main-color focus:ring-2 "
-                            Frequired autofocus autocomplete="sex" />
-                    </label>
-                    <label for="female" class="ml-3 text-xs">女性
-                        <x-text-input id="female" type="radio" name="sex" :value="1"
-                            class=" text-main-color bg-main-hover-color border-explain-color focus:ring-main-color focus:ring-2 "
-                            Frequired autofocus autocomplete="sex" />
-                    </label>
+                <div class="flex">
+                    <x-text-input id="age" class="block mt-1 h-9 w-20" type="number"
+                        pattern="^([1-9]\d*|0)(\.\d+)?$" min="0" name="age" :value="old('age')" required
+                        autofocus autocomplete="age" />
+                    <x-text-label class="text-xs ml-1 mt-5">歳</x-text-label>
+                    <x-input-error :messages="$errors->get('age')" class="mt-2" />
                 </div>
             </div>
 
-            <!-- height  -->
-            <div class="mt-4">
+            <!-- 性別  -->
+            <div class="">
+                <x-input-label :value="__('Sex')" />
+                <div class="mt-4 flex">
+                    <div class="">
+                        <label formale class="text-xs">男性</label>
+                        <input id="male" type="radio" value="0" name="sex" class="">
+                    </div>
+                    <div class=" ">
+                        <label for="female" class="text-xs ml-3">女性</label>
+                        <input checked id="female" type="radio" value="1" name="sex" class="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 身長  -->
+            <div class="ml-10">
                 <x-input-label for="height" :value="__('Height')" />
-                <x-text-input id="height" class="block mt-1 h-9 w-20" type="number" min="0"
-                    pattern="^([1-9]\d*|0)(\.\d+)?$" name="height" :value="old('height')" step="0.1" required autofocus
-                    autocomplete="height" />
-                <x-input-error :messages="$errors->get('height')" class="mt-2" />
+                <div class="flex">
+                    <x-text-input id="height" class="block mt-1 h-9 w-20" type="number" min="0"
+                        pattern="^([1-9]\d*|0)(\.\d+)?$" name="height" :value="old('height')" step="0.1" required
+                        autofocus autocomplete="height" />
+                    <x-text-label class="text-xs ml-1 mt-5">cm</x-text-label>
+                    <x-input-error :messages="$errors->get('height')" class="mt-2" />
+                </div>
             </div>
         </div>
 

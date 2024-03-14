@@ -6,7 +6,7 @@
                 <x-action-button type="button"
                     onclick="location.href='{{ route('food_registrations.create') }}'">食品を登録</x-action-button>
             </div>
-            <table class="w-3/5 text-sm text-left rtl:text-right">
+            <table class="w-2/5 text-sm text-left rtl:text-right">
                 <thead class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
 
                     <tr>
