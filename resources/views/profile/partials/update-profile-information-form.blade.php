@@ -67,12 +67,12 @@
                 <div class="mt-4 flex">
                     <div class="">
                         <label for="male" class="text-xs">男性</label>
-                        <input id="male" type="radio" value="{{old('sex')}}"
+                        <input id="male" type="radio" value="0"
                             {{ old('sex', $user->sex) == 0 ? 'checked' : '' }} name="sex" class="">
                     </div>
                     <div class=" ">
                         <label for="female" class="text-xs ml-3">女性</label>
-                        <input checked id="female" type="radio" value="{{old('sex')}}"
+                        <input  id="female" type="radio" value="1"
                             {{ old('sex', $user->sex) == 1 ? 'checked' : '' }} name="sex" class="">
                     </div>
                 </div>

@@ -8,7 +8,7 @@
             </x-action-button>
             @if (!empty($b))
                 @foreach ($b as $record)
-                    <table class="w-3/5 text-sm text-left mb-10">
+                    <table class="w-2/5 text-sm text-left mb-10">
                         <form method="post"
                             action="{{ route('meal_records.record_destroy', ['record_id' => $record->id]) }}">
                             @csrf
@@ -53,6 +53,7 @@
                                     </tr>
                                 </tbody>
                             @endforeach
+                            {{-- 食品が追加されていないときはelseifで「食品はまだ記録されていません」と表示する --}}
                         @endif
                     </table>
                 @endforeach

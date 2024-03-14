@@ -6,7 +6,7 @@
                 <x-action-button type="button"
                     onclick="location.href='{{ route('meal_records.add', ['meal_record_id' => $mealRecords->id]) }}'">食品の追加</x-action-button>
             </div>
-            <table class="w-3/5 text-sm text-left">
+            <table class="w-2/5 text-sm text-left">
                 <thead class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
                     <tr>
                         <th scope="col" class="px-6 py-3">

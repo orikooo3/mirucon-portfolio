@@ -58,17 +58,15 @@
             <!-- 性別  -->
             <div class="">
                 <x-input-label :value="__('Sex')" />
-                 <div class="mt-4 ">
-                    <label for="female" class="text-xs">男性
-                        <x-text-input id="female" type="radio" name="sex" :value="0"
-                            class="text-main-color bg-main-hover-color border-explain-color focus:ring-main-color focus:ring-2 "
-                            Frequired autofocus autocomplete="sex" />
-                    </label>
-                    <label for="female" class="ml-3 text-xs">女性
-                        <x-text-input id="female" type="radio" name="sex" :value="1"
-                            class=" text-main-color bg-main-hover-color border-explain-color focus:ring-main-color focus:ring-2 "
-                            Frequired autofocus autocomplete="sex" />
-                    </label>
+                <div class="mt-4 flex">
+                    <div class="">
+                        <label formale class="text-xs">男性</label>
+                        <input id="male" type="radio" value="0" name="sex" class="">
+                    </div>
+                    <div class=" ">
+                        <label for="female" class="text-xs ml-3">女性</label>
+                        <input checked id="female" type="radio" value="1" name="sex" class="">
+                    </div>
                 </div>
             </div>
 
@@ -79,7 +77,7 @@
                     <x-text-input id="height" class="block mt-1 h-9 w-20" type="number" min="0"
                         pattern="^([1-9]\d*|0)(\.\d+)?$" name="height" :value="old('height')" step="0.1" required
                         autofocus autocomplete="height" />
-                        <x-text-label class="text-xs ml-1 mt-5">cm</x-text-label>
+                    <x-text-label class="text-xs ml-1 mt-5">cm</x-text-label>
                     <x-input-error :messages="$errors->get('height')" class="mt-2" />
                 </div>
             </div>
