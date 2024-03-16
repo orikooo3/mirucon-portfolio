@@ -23,7 +23,7 @@ class FoodRegistrationFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id,             //リレーション定義
             'food_name' => fake()->word(),
             'grams' => fake()->randomNumber(3, true),
-            'calory' => fake()->randomNumber(3, true),
+            'calorie' => fake()->randomNumber(3, true),
             'protein' => fake()->randomNumber(3, true),
             'fat' => fake()->randomNumber(3, true),
             'carbohydrate' => fake()->randomNumber(3, true),

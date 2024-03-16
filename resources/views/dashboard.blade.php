@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-calendar />
     <x-slot name=title>本日の記録</x-slot>
-    <div class="relative overflow-y-auto shadow-md sm:rounded-lg h-screen bg-bkg-color">
-        <div class="flex flex-col items-center sm:justify-center sm:pt-0">
+    <div class="relative overflow-y-auto">
+        <div class="flex flex-col items-center sm:justify-center sm:pt-0 ">
             <x-action-button type="button" class="my-5 w-64" onclick="location.href='{{ route('meal_records.index') }}'">
                 <i class="fa-regular fa-plus my-auto mr-1"></i>本日の記録を追加
             </x-action-button>
             @if (!empty($b))
                 @foreach ($b as $record)
-                    <table class="w-2/5 text-sm mb-10 text-left">
-                        <thead class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
+                    <table class="w-2/5 text-sm mb-10 text-left ">
+                        <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color ">
                             <tr class="">
                                 <th scope="col" class="px-6 py-3">
                                     {{ $record->meal_type }}
@@ -19,7 +19,7 @@
                                 </th>
                                 <th scope="col" class="px-6">
                                     {{-- 記録総カロリー --}}
-                                    {{ $record->meal_calory }}kcal
+                                    {{ $record->meal_calorie }}kcal
                                 </th>
                             </tr>
                         </thead>
@@ -35,7 +35,7 @@
                                             {{ $food->grams }}g
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $food->calory }}kcal
+                                            {{ $food->calorie }}kcal
                                         </td>
                                     </tr>
                                 </tbody>

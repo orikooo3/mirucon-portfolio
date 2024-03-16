@@ -35,16 +35,23 @@ class FoodRegistrationController extends Controller
         // $user = Auth::user();
         // $id = Auth::id();
         // dd($request, $request->food_name);
-        FoodRegistration::create([
+        /**
+         * $requestの中身は<form>の中でname属性と紐付いているvalue属性の値が送信される
+         * 例: name=food_name value="ご飯"　がリクエストされる
+         * できるだけnameはカラム名と合わせるとわかりやすい
+         * 'calorie' => $request->grams,は左がのkeyがカラム名になっていて、右の値が$requestで取得した値。これでもエラーにならないで値が
+         * key(カラム)と紐ついてしまう
+         */
+        $food = FoodRegistration::create([
             'user_id' => Auth::id(),
             'food_name' => $request->food_name,
             'grams' => $request->grams,
-            'calory' => $request->calory,
+            'calorie' => $request->calorie,
             'protein' => $request->protein,
             'fat' => $request->fat,
             'carbohydrate' => $request->carbohydrate,
         ]);
-
+        // dd($food);
         return to_route('food_registrations.index');
     }
 
@@ -53,7 +60,9 @@ class FoodRegistrationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $food = FoodRegistration::find($id);
+
+        return view('food_registrations.show', compact('food'));
     }
 
     /**
@@ -74,7 +83,7 @@ class FoodRegistrationController extends Controller
         $food = FoodRegistration::find($id);
         $food->food_name = $request->food_name;
         $food->grams = $request->grams;
-        $food->calory = $request->calory;
+        $food->calorie = $request->calorie;
         $food->protein = $request->protein;
         $food->fat = $request->fat;
         $food->carbohydrate = $request->carbohydrate;
