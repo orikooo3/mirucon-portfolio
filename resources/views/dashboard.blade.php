@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-calendar />
     <x-slot name=title>本日の記録</x-slot>
-    <div class="relative overflow-y-auto">
-        <div class="flex flex-col items-center sm:justify-center sm:pt-0 ">
-            <x-action-button type="button" class="my-5 w-64" onclick="location.href='{{ route('meal_records.index') }}'">
-                <i class="fa-regular fa-plus my-auto mr-1"></i>本日の記録を追加
-            </x-action-button>
+    <div class="flex flex-col items-center sm:justify-center sm:pt-0 bg-main-color">
+        <x-action-button type="button" class="my-5 w-64" onclick="location.href='{{ route('meal_records.index') }}'">
+            <i class="fa-regular fa-plus my-auto mr-1"></i>本日の記録を追加
+        </x-action-button>
+        {{-- <div class="relative overflow-y-auto shadow-md sm:rounded-lg"> --}}
             @if (!empty($b))
                 @foreach ($b as $record)
-                    <table class="w-2/5 text-sm mb-10 text-left ">
-                        <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color ">
-                            <tr class="">
-                                <th scope="col" class="px-6 py-3">
+                    <table class="mb-10 text-left ">
+                        <thead class="">
+                            <tr class="text-lg text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color ">
+                                <th scope="col" class="pl-6 py-3">
                                     {{ $record->meal_type }}
                                 </th>
-                                <th scope="col" class="px-6">
-                                    {{ $record->meal_time }}
+                                <th scope="col" class="pr-40">
+                                    {{ substr($record->meal_time, 0, 5) }}
                                 </th>
                                 <th scope="col" class="px-6">
                                     {{-- 記録総カロリー --}}
@@ -25,17 +25,18 @@
                         </thead>
                         @if (!empty($record))
                             @foreach ($record->foodRegistrations as $food)
-                                <tbody
-                                    class="text-black-color bg-white-color border-b dark:text-black-color dark:bg-white-color dark:border-explain-color-color">
-                                    <tr>
+                                <tbody class="">
+                                    <tr
+                                        class="text-black-color bg-white-color border-b dark:text-black-color dark:bg-white-color dark:border-explain-color-color">
                                         <td scope="row" class="px-6 text-xl">
-                                            {{ $food->food_name }}
+                                            <div class="text-base">{{ $food->food_name }}</div>
+                                            <div class="text-xs text-explain-color">{{ $food->calorie }}kcal</div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $food->grams }}g
+
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $food->calorie }}kcal
+                                            {{-- 食品の個数を配置 --}}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -44,6 +45,6 @@
                     </table>
                 @endforeach
             @endif
-        </div>
+        {{-- </div> --}}
     </div>
 </x-app-layout>

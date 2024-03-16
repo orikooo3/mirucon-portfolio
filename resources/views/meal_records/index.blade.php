@@ -17,10 +17,10 @@
                                 class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        <a href="{{ route('dashboard') }}" class="mr-9"><i class="fa-regular fa-less-than"></i>戻る</a>{{ $record->meal_type }}
+                                        <a href="{{ route('dashboard') }}" class="mr-9"><i class="fa-regular fa-less-than"></i></a>{{ $record->meal_type }}
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        {{ $record->meal_time }}
+                                        {{ substr($record->meal_time, 0, 5) }}
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         <a href="{{ route('meal_records.show', $record->id) }}"><i
