@@ -32,7 +32,7 @@
                 <div class="flex items-center  mt-4">
                     <label for="remember_me" class="inline-flex items-center">
                         <input id="remember_me" type="checkbox"
-                            class="text-main-color border-gray-300 rounded shadow-sm focus:ring-main-color"
+                            class="text-sub-color border-gray-300 rounded shadow-sm focus:ring-sub-dark-color"
                             name="remember">
                         <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                     </label>
@@ -41,23 +41,23 @@
 
             <!-- Forgot password? -->
             @if (Route::has('password.request'))
-                <a class="text-sm mt-4 text-main-color  rounded-md hover:text-main-color hover:opacity-70 hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-color"
+                <a class="text-sm mt-4 text-explain-color  rounded-md hover:text-explain-color hover:opacity-70 hover:underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-color"
                     href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
         </div>
-        <div class="flex items-center justify-center mt-7">
-            <x-action-button>
+        <div class="flex justify-center mt-7">
+            <x-action-button class="w-32">
                 {{ __('Log in') }}
             </x-action-button>
         </div>
     </form>
     <!-- Already have an account?-->
-    <div class="flex flex-col items-center w-full mt-7">
+    <div class="flex flex-col items-center mt-7">
         <p class="text-xs font-thin mb-3 text-explain-color">アカウントをお持ちではないですか？</p>
-        <x-action-button onclick="location.href='{{ route('register') }}'">
-            新規登録
+        <x-action-button onclick="location.href='{{ route('register') }}'" class="w-32">
+            {{__('New Register')}}
         </x-action-button>
     </div>
 </x-guest-layout>
