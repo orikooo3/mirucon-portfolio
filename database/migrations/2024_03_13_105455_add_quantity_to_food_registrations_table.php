@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('food_registrations', function (Blueprint $table) {
-            $table->tinyInteger('quantity')->default(1); //カラムの追加
+            $table->tinyInteger('quantity')->after('carbohydrate')->default(1); //カラムの追加 //after()メソッドでカーボハイドレートの後に追加
         });
     }
 
