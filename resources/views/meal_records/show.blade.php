@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name=title>記録詳細</x-slot>
-    <div class="relative overflow-y-auto shadow-md sm:rounded-lg bg-bkg-color">
+    <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
         <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
             <div class="my-5">
                 <x-action-button type="button"
                     onclick="location.href='{{ route('meal_records.add', ['meal_record_id' => $mealRecords->id]) }}'">食品の追加</x-action-button>
             </div>
             <table class="w-2/5 text-sm text-left">
-                <thead class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
+                <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             <a href="{{ route('meal_records.index') }}"><i class="fa-solid fa-x text-xl"></i></a>
@@ -45,7 +45,7 @@
                                         {{ $food->grams }}g
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ $food->calory }}kcal
+                                        {{ $food->calorie }}kcal
                                     </td>
                                     <td class="px-6 py-4">
                                         <button type="submit" class="font-medium hover:underline"><i

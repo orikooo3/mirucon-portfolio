@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('food_registrations', function (Blueprint $table) {
-            $table->tinyInteger('quantity')->after('carbohydrate')->default(1); //カラムの追加 //after()メソッドでカーボハイドレートの後に追加
+            $table->renameColumn('calory', 'calorie'); // カラム名を変更する
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('food_registrations', function (Blueprint $table) {
-            $table->dropColumn('quantity'); // カラムの削除
+            $table->renameColumn('calorie', 'calory'); // 元のカラム名に戻す
         });
     }
 };

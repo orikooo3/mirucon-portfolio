@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="relative overflow-y-auto shadow-md sm:rounded-lg bg-bkg-color">
+    <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
         <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
             <div
                 class="flex justify-center my-10 max-w-xl lg:py-16 text-black-color bg-white-color dark:text-black-color dark:bg-white-color">
@@ -23,9 +23,9 @@
                                     required />
                             </div>
                             <div class="w-full">
-                                <x-text-label for="calory" class="block mb-2 font-medium">カロリー<span
+                                <x-text-label for="calorie" class="block mb-2 font-medium">カロリー<span
                                         class="text-alarm-color">(必須)</span></x-text-label>
-                                <x-text-input type="number" name="calory" id="calory" class="w-full" min="0"
+                                <x-text-input type="number" name="calorie" id="calorie" class="w-full" min="0"
                                     required />
                             </div>
                             <div class="sm:col-span-2">

@@ -61,11 +61,11 @@
                 <div class="mt-4 flex">
                     <div class="">
                         <label formale class="text-xs">男性</label>
-                        <input id="male" type="radio" value="0" name="sex" class="">
+                        <input id="male" type="radio" value="0" name="sex" class="text-sub-color focus:ring-sub-dark-color">
                     </div>
                     <div class=" ">
                         <label for="female" class="text-xs ml-3">女性</label>
-                        <input checked id="female" type="radio" value="1" name="sex" class="">
+                        <input checked id="female" type="radio" value="1" name="sex" class="text-sub-color focus:ring-sub-dark-color">
                     </div>
                 </div>
             </div>
@@ -83,8 +83,8 @@
             </div>
         </div>
 
-        <div class="flex flex-col  items-center w-full  mt-9">
-            <x-action-button>
+        <div class="flex flex-col  items-center w-full mt-9">
+            <x-action-button class="w-32">
                 {{ __('Register') }}
             </x-action-button>
 

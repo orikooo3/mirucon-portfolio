@@ -12,12 +12,14 @@ export default {
     theme: {
         extend: {
             colors: {
-                "main-color": "#4680A8",
-                "main-dark-color": "#3D7193",
+                "main-color": "#F1F2F4",
+                "sub-color": "#3AC5A2",
+                "sub-dark-color": "#34B08F",
+                "accent-color": "#277386",
+                "accent-dark-color": "#226576",
                 "white-color": "#FDFDFD",
                 "black-color": "#333333",
-                "explain-color": "#626D72",
-                "bkg-color": "#F1F2F4",
+                "explain-color": "#596B74",
                 "alarm-color": "#BE0A2C",
                 "alarm-dark-color": "#970404",
             },

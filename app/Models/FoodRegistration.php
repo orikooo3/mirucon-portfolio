@@ -13,7 +13,7 @@ class FoodRegistration extends Model
         'user_id',
         'food_name',
         'grams',
-        'calory',
+        'calorie',
         'protein',
         'fat',
         'carbohydrate',

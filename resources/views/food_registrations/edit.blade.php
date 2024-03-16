@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="relative overflow-y-auto shadow-md sm:rounded-lg bg-bkg-color">
+    <div class="relative overflow-y-auto sm:rounded-lg ">
         <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
             <div
-                class="flex justify-center my-10 max-w-xl lg:py-16 text-black-color bg-white-color dark:text-black-color dark:bg-white-color">
+                class="flex justify-center my-10 max-w-xl lg:py-16 text-black-color bg-white-color dark:text-black-color dark:bg-white-color pb-10">
                 <x-slot name=title>食品編集</x-slot>
                 <section class="font-light mx-10 text-black-color dark:text-black-color">
                     <a href="#" onclick="history.back()" return false;><i class="fa-solid fa-x "></i></a>
@@ -24,9 +24,9 @@
                                     class="w-full" min="0" required />
                             </div>
                             <div class="w-full">
-                                <x-text-label for="calory" class="block mb-2 font-medium">カロリー<span
+                                <x-text-label for="calorie" class="block mb-2 font-medium">カロリー<span
                                         class="text-alarm-color">(必須)</span></x-text-label>
-                                <x-text-input type="number" name="calory" id="calory" value="{{ $food->calory }}"
+                                <x-text-input type="number" name="calorie" id="calorie" value="{{ $food->calorie }}"
                                     class="w-full" min="0" required />
                             </div>
                             <div class="sm:col-span-2">

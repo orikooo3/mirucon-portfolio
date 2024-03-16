@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>記録一覧</x-slot>
     {{-- ここに記録日と総カロリーを表示する --}}
-    <div class="relative overflow-y-auto shadow-md sm:rounded-lg bg-bkg-color">
+    <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
         <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
             <x-action-button type="button" class="my-5 w-64 " onclick="location.href='{{ route('meal_records.create') }}'">
                 <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成
@@ -14,7 +14,7 @@
                             @csrf
                             @method('delete')
                             <thead
-                                class="text-xs text-white-color bg-main-color dark:text-white-color dark:bg-main-color">
+                                class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         <a href="{{ route('dashboard') }}" class="mr-9"><i class="fa-regular fa-less-than"></i>戻る</a>{{ $record->meal_type }}
@@ -45,7 +45,7 @@
                                             {{ $food->grams }}g
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $food->calory }}kcal
+                                            {{ $food->calorie }}kcal
                                         </td>
                                         <td class="px-6 py-4">
 

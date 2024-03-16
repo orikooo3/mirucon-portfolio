@@ -16,7 +16,7 @@
     @include('layouts.navigation')
     <main>
         <!-- Page Content -->
-        <div>
+        <div class="bg-main-color">
             {{ $slot }}
         </div>
     </main>
