@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>記録詳細</x-slot>
     <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
-        <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
+        <div class="flex flex-col items-center min-h-screen sm:pt-20">
             <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
                 <thead class="dark:text-white-color dark:bg-sub-color">
                     <tr>
@@ -20,7 +20,11 @@
                                 </div>
                             </div>
                         </th>
-                        <th scope="col" class="pl-32 py-4 w-2/3">{{ $mealRecords->meal_calorie }}kcal</th>
+                        @if (!empty($record->meal_calorie))
+                            <th scope="col" class="pl-32 py-4 w-2/3">{{ $record->meal_calorie }}kcal</th>
+                        @else
+                            <th scope="col" class="pl-32 py-4 w-2/3"></th>
+                        @endif
                         <th scope="col" class="pl-12 py-3">
                             <input type="time" id="meal_time" name="meal_time"
                                 class=" w-24 h-8 text-sm text-black-color" />
@@ -29,7 +33,7 @@
                 </thead>
                 <tbody class="text-explain-color bg-white-color dark:text-explain-color dark:bg-white-color  ">
                     <tr class="text-center border-b">
-                        <td colspan="5" class="py-2">
+                        <td colspan="5" class="py-4">
                             <x-action-button type="button"
                                 class="text-sm dark:text-sub-color dark:bg-white-color hover:bg-white-dark-color w-36 h-7 "
                                 onclick="location.href='{{ route('meal_records.add', ['meal_record_id' => $mealRecords->id]) }}'">食品の追加</x-action-button>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>食品一覧</x-slot>
     <div class="">
-        <div class="h-screen flex flex-col items-center sm:pt-10">
+        <div class="h-screen flex flex-col items-center sm:pt-20">
             <table class="w-2/5 text-left rtl:text-right text-lg">
                 <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
                     <tr>
@@ -17,7 +17,7 @@
                 <tbody
                     class="text-black-color bg-white-color border-b dark:text-black-colork dark:bg-white-color dark:border-explain-color-color">
                     <tr class="text-center border-b">
-                        <td colspan="4" class="py-2">
+                        <td colspan="4" class="py-4">
                             <x-action-button type="button"
                                 class="text-sm dark:text-sub-color dark:bg-white-color hover:bg-white-dark-color w-36 h-7"
                                 onclick="location.href='{{ route('food_registrations.create') }}'">食品を登録</x-action-button>
