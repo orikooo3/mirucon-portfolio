@@ -2,42 +2,34 @@
     <x-slot name=title>食品追加</x-slot>
     <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
         <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
-            <x-action-button type="button" class="mb-4"
-                onclick="location.href='{{ route('food_registrations.index') }}'">食品一覧</x-action-button>
             <table class="w-2/5 text-sm text-left rtl:text-right ">
                 <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th colspan="4" scope="col" class="px-6 py-3">
                             <a href="{{ route('meal_records.index') }}"><i class="fa-solid fa-x text-xl"></i></a>
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-
                         </th>
                     </tr>
                 </thead>
-                <tbody
-                    class="text-black-color bg-white-color border-b dark:text-black-colork dark:bg-white-color dark:border-explain-color-color">
+                <tbody class="text-black-color bg-white-color  dark:text-black-colork dark:bg-white-color ">
                     @if (!empty($foods))
                         @foreach ($foods as $food)
                             <form method="post"
                                 action="{{ route('meal_records.add_food', ['meal_record_id' => $mealRecords->id, 'food_id' => $food->id]) }}">
                                 @csrf
-                                {{-- <input type="hidden" name="id" value="{{ request()->query('id') }}"> --}}
-                                <tr class="">
+                                <tr class="text-center border-b">
+                                    <td colspan="4" class="py-2">
+                                        <x-action-button type="button"
+                                            class="text-sm dark:text-sub-color dark:bg-white-color hover:bg-white-dark-color w-36 h-7"
+                                            onclick="location.href='{{ route('food_registrations.index') }}'">食品一覧</x-action-button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b">
                                     <td scope="row" class="px-6 text-xl">
-                                        {{ $food->food_name }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $food->grams }}g
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $food->calorie }}kcal
+                                        <div class="flex">
+                                            <div class="text-lg">{{ $food->food_name }}</div>
+                                            <div class="text-base mt-0.5">{{ '(' . $food->grams . 'g)' }}</div>
+                                        </div>
+                                        <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                     </td>
                                     <td class="px-6 py-4">
                                         <button type="submit">登録</button>
@@ -46,10 +38,16 @@
                             </form>
                         @endforeach
                     @endif
+                    <tr class="text-center">
+                        <td colspan="4" class="pb-4 ">
+                            <x-action-button type="button"
+                                class="text-sm  mt-4 w-36 h-7"
+                                onclick="location.href='{{ route('meal_records.show', $mealRecords) }}'">登録を確認</x-action-button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <x-action-button type="button" class="mt-4"
-                onclick="location.href='{{ route('meal_records.show', $mealRecords) }}'">登録を確認</x-action-button>
+
             </form>
         </div>
     </div>
