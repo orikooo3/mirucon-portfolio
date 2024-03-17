@@ -2,8 +2,8 @@
     <x-slot name=title>記録一覧</x-slot>
     {{-- ここに記録日と総カロリーを表示する --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div class="flex flex-col items-center sm:pt-0 bg-main-color h-screen">
-            <x-action-button type="button" class="my-8 w-64 "
+        <div class="flex flex-col items-center sm:pt-20 bg-main-color h-screen">
+            <x-action-button type="button" class="mb-6 w-64 "
                 onclick="location.href='{{ route('meal_records.create') }}'">
                 <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成
             </x-action-button>
@@ -25,7 +25,11 @@
                                     <th colspan="2" scope="col" class="pl-4 py-4 w-1/3">
                                         {{ $record->meal_type }}
                                         {{ substr($record->meal_time, 0, 5) }}</th>
-                                    <th scope="col" class="pl-32 py-4 w-2/3">{{ $record->meal_calorie }}kcal</th>
+                                    @if (!empty($record->meal_calorie))
+                                        <th scope="col" class="pl-32 py-4 w-2/3">{{ $record->meal_calorie }}kcal</th>
+                                    @else
+                                        <th scope="col" class="pl-32 py-4 w-2/3"></th>
+                                    @endif
                                     <th scope="col" class="px-6 py-3">
                                         <div class="dark:text-accent-color dark:hover:text-accent-dark-color">
                                             <button type="submit" class=""><i
@@ -40,14 +44,14 @@
                                 <tbody class="">
                                     <tr
                                         class="{{ $loop->last ?: 'border-b' }} dark:bg-white-color dark:border-white-dark-color">
-                                        <td colspan="4" class="px-6 py-2">
+                                        <td colspan="4" class="px-6 py-3">
                                             <div class="flex">
                                                 <div class="text-base">{{ $food->food_name }}</div>
                                                 <div class="text-base">{{ '(' . $food->grams . 'g)' }}</div>
                                             </div>
                                             <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                         </td>
-                                        <td class="px-3 py-3">
+                                        <td class="pr-6 py-3">
                                             <div class="text-center text-sm text-gray-color">{{ $food->quantity }}人前
                                             </div>
                                         </td>
