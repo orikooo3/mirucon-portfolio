@@ -2,7 +2,7 @@
     <x-slot name=title>記録一覧</x-slot>
     {{-- ここに記録日と総カロリーを表示する --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div class="flex flex-col items-center sm:pt-20 bg-main-color h-screen">
+        <div class="flex flex-col items-center min-h-screen sm:pt-20">
             <x-action-button type="button" class="mb-6 w-64 "
                 onclick="location.href='{{ route('meal_records.create') }}'">
                 <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成
@@ -46,8 +46,8 @@
                                         class="{{ $loop->last ?: 'border-b' }} dark:bg-white-color dark:border-white-dark-color">
                                         <td colspan="4" class="px-6 py-3">
                                             <div class="flex">
-                                                <div class="text-base">{{ $food->food_name }}</div>
-                                                <div class="text-base">{{ '(' . $food->grams . 'g)' }}</div>
+                                                <div class="">{{ $food->food_name }}</div>
+                                                <div class="text-sm mt-1">{{ '(' . $food->grams . 'g)' }}</div>
                                             </div>
                                             <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                         </td>

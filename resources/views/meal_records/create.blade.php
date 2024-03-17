@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>記録フォーム作成</x-slot>
     <div
-        class="h-screen flex items-center sm:justify-center sm:pt-0 ">
+        class="flex flex-col items-center min-h-screen sm:pt-20">
         <div class="w-full px-6 py-4 mt-6 bg-white-color shadow-md sm:max-w-md sm:rounded-xl">
             <a href="{{ route('meal_records.index') }}" class="text-2xl"><i class="fa-solid fa-x"></i></a>
             <div class="flex justify-center text-2xl -mt-7 max-w-screen font-semibold">

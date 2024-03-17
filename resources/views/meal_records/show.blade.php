@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>記録詳細</x-slot>
-    <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
-        <div class="flex flex-col items-center min-h-screen sm:pt-20">
+    <div class="">
+        <div class="flex flex-col items-center min-h-screen sm:py-20">
             <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
                 <thead class="dark:text-white-color dark:bg-sub-color">
                     <tr>
@@ -31,7 +31,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody class="text-explain-color bg-white-color dark:text-explain-color dark:bg-white-color  ">
+                <tbody class="text-explain-color bg-white-color dark:text-explain-color dark:bg-white-color">
                     <tr class="text-center border-b">
                         <td colspan="5" class="py-4">
                             <x-action-button type="button"
@@ -45,20 +45,24 @@
                                 @csrf
                                 @method('delete')
                                 <tr class="border-b ">
-                                    <td class="pl-6 py-4">
-                                        <div class="dark:text-accent-color dark:hover:text-accent-dark-color">
-                                            <button type="submit" class=""><i
-                                                    class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                    <td colspan="3" class="py-4 w-1/3 ">
+                                    <td colspan="4" class="px-6 py-4">
                                         <div class="flex">
-                                            <div><a class="dark:text-sub-color dark:hover:text-sub-dark-color"
-                                                    href="{{ route('food_registrations.show', ['id' => $food->id]) }}">{{ $food->food_name }}</a>
+                                            <div class="dark:text-accent-color dark:hover:text-accent-dark-color ">
+                                                <button type="submit" class=""><i
+                                                        class="fa-solid fa-trash"></i></button>
                                             </div>
-                                            <div class="text-base mt-0.5">{{ '(' . $food->grams . 'g)' }}</div>
+                                            <div class="">
+                                                <div>
+                                                    <a class="dark:text-sub-color dark:hover:text-sub-dark-color pl-6"
+                                                        href="{{ route('food_registrations.show', ['id' => $food->id]) }}">{{ $food->food_name }}
+                                                        <span class="text-sm">
+                                                            {{ '(' . $food->grams . 'g)' }}
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="text-sm text-gray-color px-6">{{ $food->calorie }}kcal</div>
+                                            </div>
                                         </div>
-                                        <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                     </td>
                                     <td class="pl-20 py-4 w-1/3">
                                         <div class=" dark:bg-main-color text-center text-xs py-2 w-14 rounded-lg">

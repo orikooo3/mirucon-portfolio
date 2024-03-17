@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>食品追加</x-slot>
     <div class="relative overflow-y-auto shadow-md sm:rounded-lg">
-        <div class="flex flex-col items-center min-h-screen sm:justify-center sm:pt-0">
+        <div class="flex flex-col items-center min-h-screen sm:pt-20">
             <table class="w-2/5 text-sm text-left rtl:text-right ">
                 <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
                     <tr>
@@ -12,7 +12,7 @@
                 </thead>
                 <tbody class="text-black-color bg-white-color  dark:text-black-colork dark:bg-white-color ">
                     <tr class="text-center border-b">
-                        <td colspan="4" class="py-2">
+                        <td colspan="4" class="py-4">
                             <x-action-button type="button"
                                 class="text-sm dark:text-sub-color dark:bg-white-color hover:bg-white-dark-color w-36 h-7"
                                 onclick="location.href='{{ route('food_registrations.index') }}'">食品一覧</x-action-button>
@@ -24,14 +24,14 @@
                                 action="{{ route('meal_records.add_food', ['meal_record_id' => $mealRecords->id, 'food_id' => $food->id]) }}">
                                 @csrf
                                 <tr class="border-b">
-                                    <td scope="row" class="px-6 text-xl">
+                                    <td scope="row" class="px-6 text-xl w-2/3">
                                         <div class="flex">
                                             <div class="text-lg">{{ $food->food_name }}</div>
                                             <div class="text-base mt-0.5">{{ '(' . $food->grams . 'g)' }}</div>
                                         </div>
                                         <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                     </td>
-                                    <td class="pl-64 py-4">
+                                    <td class="pl-28 py-4 w-1/3">
                                         <div class="text-center text-xs py-2 w-14 rounded-lg dark:text-white-color dark:bg-sub-color dark:hover:bg-sub-dark-color">
                                             <button type="submit">登録</button>
                                         </div>
