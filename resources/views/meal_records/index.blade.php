@@ -1,67 +1,74 @@
 <x-app-layout>
     <x-slot name=title>記録一覧</x-slot>
     {{-- ここに記録日と総カロリーを表示する --}}
-    <div class="relative overflow-y-auto">
-        <div class="flex flex-col items-center sm:justify-center sm:pt-0">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="flex flex-col items-center sm:pt-0 bg-main-color h-screen">
             <x-action-button type="button" class="my-8 w-64 "
                 onclick="location.href='{{ route('meal_records.create') }}'">
                 <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成
             </x-action-button>
-            @if (!empty($b))
+            @if ($b->isNotempty())
                 @foreach ($b as $record)
-                    <table class="w-2/5 text-sm text-left mb-10">
+                    <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
                         <form method="post"
                             action="{{ route('meal_records.record_destroy', ['record_id' => $record->id]) }}">
                             @csrf
                             @method('delete')
-                            <thead class="text-xs text-white-color bg-sub-color dark:text-white-color dark:bg-sub-color">
+                            <thead class="dark:text-white-color dark:bg-sub-color">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        {{-- 戻るボタン --}}
-                                        <a href="{{ route('dashboard') }}" class="mr-9"><i
-                                                class="fa-regular fa-less-than"></i></a>
-                                        {{-- 食事のタイプ --}}
+                                    <th class="pl-6">
+                                        <div class="dark:text-accent-color dark:hover:text-accent-dark-color">
+                                            <a href="{{ route('meal_records.show', $record->id) }}" class=""><i
+                                                    class="fa-solid fa-pencil"></i></a>
+                                        </div>
+                                    </th>
+                                    <th colspan="2" scope="col" class="pl-4 py-4 w-1/3">
                                         {{ $record->meal_type }}
-                                    </th>
+                                        {{ substr($record->meal_time, 0, 5) }}</th>
+                                    <th scope="col" class="pl-32 py-4 w-2/3">{{ $record->meal_calorie }}kcal</th>
                                     <th scope="col" class="px-6 py-3">
-                                        {{-- 食事時間 --}}
-                                        {{ substr($record->meal_time, 0, 5) }}
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        {{-- 記録詳細画面遷移 --}}
-                                        <a href="{{ route('meal_records.show', $record->id) }}"
-                                            class="hover:text-white-dark-color mr-4"><i
-                                                class="fa-solid fa-pencil"></i></a>
-                                        {{-- 記録削除ボタン --}}
-                                        <button type="submit" class="font-medium hover:text-white-dark-color"><i
-                                                class="fa-solid fa-trash"></i></button>
+                                        <div class="dark:text-accent-color dark:hover:text-accent-dark-color">
+                                            <button type="submit" class=""><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </div>
                                     </th>
                                 </tr>
                             </thead>
                         </form>
-                        @if (!empty($record))
+                        @if ($record->foodRegistrations->isNotEmpty())
                             @foreach ($record->foodRegistrations as $food)
-                                <tbody
-                                    class="text-black-color bg-white-color border-b dark:text-black-colork dark:bg-white-color dark:border-explain-color-color">
+                                <tbody class="">
                                     <tr
-                                        class="text-black-color bg-white-color border-b dark:text-black-color dark:bg-white-color dark:border-explain-color-color">
-                                        <td colspan="2" scope="row" class="px-6 py-4 text-xl">
+                                        class="{{ $loop->last ?: 'border-b' }} dark:bg-white-color dark:border-white-dark-color">
+                                        <td colspan="4" class="px-6 py-2">
                                             <div class="flex">
-                                                <div class="text-lg">{{ $food->food_name }}</div>
-                                                <div class="text-base mt-0.5">{{ '(' . $food->grams . 'g)' }}</div>
+                                                <div class="text-base">{{ $food->food_name }}</div>
+                                                <div class="text-base">{{ '(' . $food->grams . 'g)' }}</div>
                                             </div>
-                                            <div class="text-xs text-explain-color">{{ $food->calorie }}kcal</div>
+                                            <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <div class=" text-center">{{$food->quantity}}人前</div>
+                                        <td class="px-3 py-3">
+                                            <div class="text-center text-sm text-gray-color">{{ $food->quantity }}人前
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             @endforeach
-                            {{-- 食品が追加されていないときはelseifで「食品はまだ記録されていません」と表示する --}}
+                        @else
+                            <tbody class="">
+                                <tr
+                                    class="{{ $loop->last ?: 'border-b' }} text-base dark:bg-white-color dark:border-white-dark-color">
+                                    <td colspan="5" class="px-6 py-4 text-clip text-center">{{ __('No Record') }}
+                                    </td>
+                                </tr>
+                            </tbody>
                         @endif
                     </table>
                 @endforeach
+            @else
+                <div class="">
+                    <x-text-label class="text-3xl dark:text-gray-color">記録はありません</x-text-label>
+                </div>
             @endif
         </div>
     </div>
