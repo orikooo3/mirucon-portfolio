@@ -65,7 +65,7 @@
                                         </div>
                                     </td>
                                     <td class="pl-20 py-4 w-1/3">
-                                        @livewire('calculate-modal', ['quantity' => $food])
+                                        <livewire:calculate-modal :id="$food->id"/>
                                     </td>
                                 </tr>
                             </form>

@@ -106,6 +106,7 @@ class MealRecordController extends Controller
         // $food_registration_id = FoodRegistrationMealRecord::get('food_registration_id'); // 中間テーブル: food_registration_idの抽出
         // $meal_record_id = FoodRegistrationMealRecord::get('meal_record_id'); // 中間テーブル: meal_record_idの抽出
         $mealRecords = MealRecord::findOrFail($request->id);
+        // dd($mealRecords);
         // 記録詳細画面のMealRecordIDと紐付ける
         $foods = MealRecord::find($mealRecords->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを抽出できてなかった
         // dd($food_name + $grams + $calory);
