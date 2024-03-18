@@ -39,11 +39,11 @@
                         @else
                             <button onclick="location.href='{{route('login')}}'"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                ログイン
+                                {{__('Log in')}}
                             </button>
                             <button onclick="location.href='{{route('register')}}'"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                登録
+                                {{__('New Register')}}
                             </button>
                         @endif
                     </x-slot>
