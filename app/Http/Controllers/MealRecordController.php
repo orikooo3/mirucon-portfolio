@@ -105,10 +105,10 @@ class MealRecordController extends Controller
 
         // $food_registration_id = FoodRegistrationMealRecord::get('food_registration_id'); // 中間テーブル: food_registration_idの抽出
         // $meal_record_id = FoodRegistrationMealRecord::get('meal_record_id'); // 中間テーブル: meal_record_idの抽出
-        $mealRecords = MealRecord::findOrFail($request->id);
+        $meal_records = MealRecord::findOrFail($request->id);
         // dd($mealRecords);
         // 記録詳細画面のMealRecordIDと紐付ける
-        $foods = MealRecord::find($mealRecords->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを抽出できてなかった
+        $foods = MealRecord::find($meal_records->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを抽出できてなかった
         // dd($food_name + $grams + $calory);
         // dd($foods);
         // dd(array_merge_recursive($food_name, $grams, $calory));
@@ -117,7 +117,7 @@ class MealRecordController extends Controller
         //     dump($food_record);
         // }
 
-        return view('meal_records.show', compact('mealRecords', 'foods'));
+        return view('meal_records.show', compact('meal_records', 'foods'));
     }
 
     /**
@@ -132,6 +132,14 @@ class MealRecordController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request);
+        $record = MealRecord::find($id);
+        $record->meal_type = $request->meal_type;
+        $record->meal_time = $request->meal_time;
+        $record->save();
+        // dd($record);
+
+        return to_route('meal_records.index');
     }
 
     public function record_destroy ($record_id){
