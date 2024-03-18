@@ -7,7 +7,7 @@
                 <section class="font-light mx-10 text-black-color dark:text-black-color">
                     <a href="#" onclick="history.back()" return false;><i class="fa-solid fa-x "></i></a>
                     <h2 class="flex justify-center items-center text-2xl mb-4">食品の更新</h2>
-                    <form action="{{ route('food_registrations.update', ['id' => $food->id]) }}" method="POST">
+                    <form method="POST" action="{{ route('food_registrations.update', ['id' => $food->id]) }}" >
                         @csrf
                         @method('patch')
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
