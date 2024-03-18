@@ -13,9 +13,10 @@ class CalculateModal extends Component
     public function mount($id)
     {
         // dd($id);
-        $quantity = FoodRegistration::find($id)->get(['quantity'])->first();
+        $quantity = FoodRegistration::find($id);
         // dd($quantity);
-        $this->quantity = $quantity;
+        $this->quantity = $quantity->quantity;
+        // dd($this->quantity);
     }
 
     public $showModal = false;
