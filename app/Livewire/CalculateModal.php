@@ -7,11 +7,16 @@ use Livewire\Component;
 
 class CalculateModal extends Component
 {
+    public $calorie;
     public $quantity;
 
     public function mount($id)
     {
-        $this->quantity = FoodRegistration::find($id);
+        // dd($id);
+        $quantity = FoodRegistration::find($id);
+        // dd($quantity);
+        $this->quantity = $quantity->quantity;
+        // dd($this->quantity);
     }
 
     public $showModal = false;

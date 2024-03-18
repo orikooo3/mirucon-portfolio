@@ -1,11 +1,11 @@
 {{-- モーダルコンポーネント --}}
 <div>
-    {{-- <button wire:click="openModal()" type="button" class="dark:bg-main-color text-center text-xs py-2 w-14 rounded-lg">
-        モーダルを表示
-    </button> --}}
+    <button wire:click="openModal()" type="button" class="dark:bg-main-color text-center text-xs py-2 w-14 rounded-lg">
+        {{$quantity}}人前
+    </button>
 
-    @dd($quantity)
-    {{-- @if ($showModal)
+    {{-- @dd($quantity) --}}
+    @if ($showModal)
         <div class="fixed z-10 inset-0 overflow-y-auto">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -31,5 +31,5 @@
                 </div>
             </div>
         </div>
-    @endif --}}
+    @endif
 </div>
