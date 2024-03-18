@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FoodRegistrationController;
 use App\Http\Controllers\MealRecordController;
+use App\Http\Controllers\CalculateModalController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -81,6 +82,7 @@ Route::prefix('/meal_records')
     });
 
 // Route::get('meals', [MealRecordController::class, 'index']);
+
 
 /**
  * 目的別にルート情報を分割する
