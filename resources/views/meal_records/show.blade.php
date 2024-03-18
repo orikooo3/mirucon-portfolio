@@ -65,8 +65,7 @@
                                         </div>
                                     </td>
                                     <td class="pl-20 py-4 w-1/3">
-                                        <div class=" dark:bg-main-color text-center text-xs py-2 w-14 rounded-lg">
-                                            {{ $food->quantity }}人前</div>
+                                        @livewire('calculate-modal', ['quantity' => $food])
                                     </td>
                                 </tr>
                             </form>
