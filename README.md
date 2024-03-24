@@ -8,7 +8,7 @@
  <br><br>
 
 ## ２.　アプリの特徴
-
+### 
 ![2024-03-201210341-ezgif com-video-to-gif-converter](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/670003df-e025-4df5-adbf-791f5a3e65eb)
 
 ![2024-03-201232181-ezgif com-optimize](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/793ec21c-aa26-4703-adcc-6923411d9ab2)
@@ -18,7 +18,9 @@
  <br><br>
 
 ## ３.　アプリの機能一覧
+### メイン機能
 
+### 認証機能
  <br><br>
  
 ## ４.　使用技術
@@ -57,18 +59,25 @@
   <br><br>
   
 ## ５.　DB設計
-
+### ER図
+### テーブル
  <br><br>
  
 ## ６.　工夫したこと
-
+-
  <br><br>
  
 ## ７.　苦労したこと
-
+-
  <br><br>
  
-## ８.　今後の課題・実装予定
+## ８.　実装したいこと
+- カロリー計算機能
+- カレンダー機能
+- 目標設定機能
+- 基礎代謝計算機能
+- Dockerでの環境構築
+- AWSでデプロイ
 
  <br><br>
  
