@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FoodRegistration;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class FoodRegistrationController extends Controller
@@ -13,7 +14,10 @@ class FoodRegistrationController extends Controller
      */
     public function index()
     {
-        $foods =  Auth::user()->food_registrations;
+        // $foods = Auth::user()->food_registrations()->paginate(5) //エラーになるコード
+
+        $user =  User::with('food_registrations')->find(Auth::id());
+        $foods = $user->food_registrations()->latest()->paginate(5);
         // dd($foods);
         return view('food_registrations.index', ['foods' => $foods]);
     }
