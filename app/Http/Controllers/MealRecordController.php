@@ -91,13 +91,6 @@ class MealRecordController extends Controller
     }
 
     /**
-     * 記録詳細(確認画面)抽出
-     */
-    public function store()
-    {
-    }
-
-    /**
      * 記録詳細(確認画面)に遷移
      */
     public function show(Request $request)
@@ -118,13 +111,6 @@ class MealRecordController extends Controller
         // }
 
         return view('meal_records.show', compact('meal_records', 'foods'));
-    }
-
-    /**
-     *
-     */
-    public function edit()
-    {
     }
 
     /**

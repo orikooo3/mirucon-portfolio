@@ -32,17 +32,17 @@
                             <div class="sm:col-span-2">
                                 <x-text-label for="protein" class="block mb-2 font-medium">タンパク質</x-text-label>
                                 <x-text-input type="number" name="protein" id="protein" value="{{ $food->protein }}"
-                                    class="w-full" min="0" />
+                                   min="0" step="0.1" class="w-full" />
                             </div>
                             <div div class="sm:col-span-2">
                                 <x-text-label for="fat" class="block mb-2 font-medium">脂質</x-text-label>
                                 <x-text-input type="number" name="fat" id="fat" value="{{ $food->fat }}"
-                                    class="w-full" min="0" />
+                                   min="0" step="0.1" class="w-full" />
                             </div>
                             <div class="sm:col-span-2">
                                 <x-text-label for="carbohydrate" class="block mb-2 font-medium">炭水化物</x-text-label>
                                 <x-text-input type="number" name="carbohydrate" value="{{ $food->carbohydrate }}"
-                                    class="w-full" id="carbohydrate" min="0" />
+                                   min="0" step="0.1" class="w-full" id="carbohydrate" />
                             </div>
                         </div>
                         <x-action-button type="submit"
