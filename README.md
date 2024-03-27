@@ -86,52 +86,55 @@
 ### ER図
 ### テーブル
 #### usersテーブル
-|     カラム名      |        データ型     |      役割      |
-| :---------------: | :-----------------: | :------------: |
-|        id         |        整数         |  ユーザー ID   |
-|       name        | 文字列/ユニーク制約 |   ユーザー名   |
-|       email       | 文字列/ユニーク制約 | メールアドレス |
-| email_verified_at |     日付と時刻      |     未使用     |
-|     password      |       文字列        |   パスワード   |
-|  remember_token   |  文字列/null 許容   |     未使用     |
-|    created_at     |     日付と時刻      |    作成日時    |
-|    updated_at     |     日付と時刻      |    更新日時    |
+|　　カラム名　　|　　データ型　　|      項目名    |　　備考　　|
+| :---------------: | :-----------------: | :------------: | :------------: |
+|        id         |        BIGINT          |　　ユーザーID　　|　　AUTO_INCREMENT　　|　　
+|       name        |       VARCHAR       |　　ユーザー名　　|
+|       email       |       VARCHAR       |　　メールアドレス　　|　　UNIQUE　　|　　　　　　
+|       age         | 　　　TINYINT 　　　|　　年齢　　|
+|       sex         | 　　　BOOLEAN 　　　|　　性別　　|
+|       height      | 　　　DOUBLE 　　　 |　　身長　　|
+| email_verified_at |     TIMESTAMP       |               |
+|     password      |       VARCHAR      |　　パスワード　　|
+|  remember_token   |      VARCHAR   　　|                |
+|    created_at     |     TIMESTAMP      |    作成日時    |
+|    updated_at     |     TIMESTAMP      |    更新日時    |
 
 #### meals_recordsテーブル
-|     カラム名      |        データ型     |      役割      |
-| :---------------: | :-----------------: | :------------: |
-|        id         |        整数         |  ユーザー ID   |
-|       name        | 文字列/ユニーク制約 |   ユーザー名   |
-|       email       | 文字列/ユニーク制約 | メールアドレス |
-| email_verified_at |     日付と時刻      |     未使用     |
-|     password      |       文字列        |   パスワード   |
-|  remember_token   |  文字列/null 許容   |     未使用     |
-|    created_at     |     日付と時刻      |    作成日時    |
-|    updated_at     |     日付と時刻      |    更新日時    |
+|　　カラム名　　|　　データ型　　|      項目名    |　　備考　　|
+| :---------------: | :-----------------: | :------------: | :------------: |
+|        id         |        BIGINT          |　　食事ID　　|　　AUTO_INCREMENT　　|　　
+|        user_id    |        BIGINT       |　　ユーザーID　　|　　FOREIGN KEY　　|
+|       record_date       |       DATE       |　　食事した日　　|　　 　　
+|       meal_type         |　　ENUM('朝食', '昼食', '夜食', '間食')　　|      食事の種類      |
+|       meal_time         | 　　　TIME 　　　|　　食事の時間　　|
+|       total_calorie      | 　　　INT 　　　 |　　合計摂取カロリー 　　|
+|　　meal_calorie　　|     INT       |　　食事ごとの摂取カロリー　　|
+|    created_at     |     TIMESTAMP      |    作成日時    |
+|    updated_at     |     TIMESTAMP      |    更新日時    |
 
 #### foods_registrationsテーブル
-|     カラム名      |        データ型     |      役割      |
-| :---------------: | :-----------------: | :------------: |
-|        id         |        整数         |  ユーザー ID   |
-|       name        | 文字列/ユニーク制約 |   ユーザー名   |
-|       email       | 文字列/ユニーク制約 | メールアドレス |
-| email_verified_at |     日付と時刻      |     未使用     |
-|     password      |       文字列        |   パスワード   |
-|  remember_token   |  文字列/null 許容   |     未使用     |
-|    created_at     |     日付と時刻      |    作成日時    |
-|    updated_at     |     日付と時刻      |    更新日時    |
+|　　カラム名　　|　　データ型　　|      項目名    |　　備考　　|
+| :---------------: | :-----------------: | :------------: | :------------: |
+|        id         |        BIGINT       |　　食品ID　　|　　AUTO_INCREMENT　　|
+|        user_id    |        BIGINT       |　　ユーザーID　　|　　FOREIGN KEY　　|
+|       food_name   |       VARCHAR       |　　食品名　　|
+|       grams       |       INT           |　　量　　|　    　　　　
+|       calorie     | 　　　INT  　　　   |　　カロリー　　|
+|       protein     | 　　　DOUBLE 　　　 |　　タンパク質　　|
+|       fat         | 　　　DOUBLE 　　　 |　　脂質　　|
+|    carbohydrate   |     DOUBLE         |　　炭水化物　　|
+|    	quantity    |     TINYINT        |　　個数　　|
+|    created_at     |     TIMESTAMP      |　　作成日時　　|
+|    updated_at     |     TIMESTAMP      |　　更新日時　　|
 
 #### mealrecord_foodregistrationsテーブル
-|     カラム名      |        データ型     |      役割      |
-| :---------------: | :-----------------: | :------------: |
-|        id         |        整数         |  ユーザー ID   |
-|       name        | 文字列/ユニーク制約 |   ユーザー名   |
-|       email       | 文字列/ユニーク制約 | メールアドレス |
-| email_verified_at |     日付と時刻      |     未使用     |
-|     password      |       文字列        |   パスワード   |
-|  remember_token   |  文字列/null 許容   |     未使用     |
-|    created_at     |     日付と時刻      |    作成日時    |
-|    updated_at     |     日付と時刻      |    更新日時    |
+|　　カラム名　　|　　データ型　　|      項目名    |　　備考　　|
+| :---------------: | :-----------------: | :------------: | :------------: |
+|        id          |        BIGINT         |　　中間テーブルID　　|　　AUTO_INCREMENT　　|
+|   meal_record_id   |        BIGINT         |　　食事記録ID   |　　FOREIGN KEY　　|
+|food_registration_id|        BIGINT         |　　食品登録ID　　|　　FOREIGN KEY　　|
+
 
  <br><br>
  
