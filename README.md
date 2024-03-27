@@ -76,14 +76,16 @@
 - Notion
 - draw.io
 - Google Sheets
-- Google Slides
-- Google Document
 - WindowsOS
   
   <br><br>
   
 ## ５.　DB設計
 ### ER図
+![mirucon er](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/d66eb30c-4d92-40c7-b6d2-f52abf26b5dc)
+
+<br>
+
 ### テーブル
 #### usersテーブル
 |　　カラム名　　|　　データ型　　|      項目名    |　　備考　　|
