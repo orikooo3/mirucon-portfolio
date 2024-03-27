@@ -49,7 +49,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="">{{ $foods->links('vendor.pagination.custom') }}</div>
         </div>
     </div>
-    <div class="">{{ $foods->links() }}</div>
 </x-app-layout>
