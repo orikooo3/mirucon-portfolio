@@ -7,8 +7,8 @@
                 onclick="location.href='{{ route('meal_records.create') }}'">
                 <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成
             </x-action-button>
-            @if ($b->isNotEmpty())
-                @foreach ($b as $record)
+            @if ($today_record->isNotEmpty())
+                @foreach ($today_record as $record)
                     <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
                         <form method="post"
                             action="{{ route('meal_records.record_destroy', ['record_id' => $record->id]) }}">
