@@ -24,8 +24,10 @@ class MealRecordController extends Controller
     {
         // $aに含まれるIDを持つすべてのMealRecordレコードを取得
         $a = Auth::user()->meal_records->pluck('id');
-
-        $b = MealRecord::find($a);
+        // dd($a);
+        $now = now()->format('Y-m-d');
+        // dd($now);
+        $b = MealRecord::find($a)->where('record_date', '=', $now);
         // dd($b);
         // $records = [];  $foods = [];
         // foreach ($b as $mealRecord) {
