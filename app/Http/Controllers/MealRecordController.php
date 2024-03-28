@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FoodRegistration;
 use App\Models\FoodRegistrationMealRecord;
 use App\Models\MealRecord;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -22,13 +23,14 @@ class MealRecordController extends Controller
      */
     public function index()
     {
-        // $aに含まれるIDを持つすべてのMealRecordレコードを取得
-        $a = Auth::user()->meal_records->pluck('id');
-        // dd($a);
-        $now = now()->format('Y-m-d');
+        // $ログイン済みユーザーのみに絞り、MealReocrdテーブルのidを取得する
+        $today = Carbon::today();
+        $id = Auth::user()->meal_records->whereDate('record_date', $today);
+        dd($id);
+
         // dd($now);
-        $b = MealRecord::find($a)->where('record_date', '=', $now);
-        // dd($b);
+        $b = MealRecord::whereDate('record_date', $today)->get();
+        dd($b);
         // $records = [];  $foods = [];
         // foreach ($b as $mealRecord) {
         //     $records[] = $mealRecord;
