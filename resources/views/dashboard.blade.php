@@ -9,8 +9,8 @@
                 onclick="location.href='{{ route('meal_records.index') }}'">
                 <i class="fa-regular fa-plus my-auto mr-1"></i>本日の記録を追加
             </x-action-button>
-            @if ($b->isNotEmpty())
-                @foreach ($b as $record)
+            @if ($today_record->isNotEmpty())
+                @foreach ($today_record as $record)
                     <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
                         <thead class="dark:text-white-color dark:bg-sub-color">
                             <tr class="">

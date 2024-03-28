@@ -16,7 +16,8 @@ class FoodRegistrationController extends Controller
     {
         // $foods = Auth::user()->food_registrations()->paginate(5) //エラーになるコード
 
-        $user =  User::with('food_registrations')->find(Auth::id());
+        $user =  User::find(Auth::id());
+        // dd($user);
         $foods = $user->food_registrations()->latest()->paginate(5)->onEachSide(1);
         // dd($foods);
         return view('food_registrations.index', ['foods' => $foods]);

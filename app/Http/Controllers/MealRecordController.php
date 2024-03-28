@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FoodRegistration;
 use App\Models\FoodRegistrationMealRecord;
 use App\Models\MealRecord;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,24 +14,31 @@ use Illuminate\Support\Facades\Log;
 class MealRecordController extends Controller
 {
     public function dashboard(){
-        $a = Auth::user()->meal_records->pluck('id');
-        $b = MealRecord::find($a);
+        $today = Carbon::today();
 
-        return view('dashboard', compact('b'));
+        $user =  User::find(Auth::id());
+
+        $today_record = $user->meal_records()->whereDate('record_date', $today)->get();
+
+        return view('dashboard', compact('today_record'));
     }
     /**
      * 記録一覧(完了画面)遷移
      */
     public function index()
     {
-        // $ログイン済みユーザーのみに絞り、MealReocrdテーブルのidを取得する
+        // 今日の日付を取得
         $today = Carbon::today();
-        $id = Auth::user()->meal_records->whereDate('record_date', $today);
-        dd($id);
+
+        // ログイン済みユーザーのidを使いデータを取得する
+        $user =  User::find(Auth::id());
+
+        $today_record = $user->meal_records()->whereDate('record_date', $today)->get();
+        // dd($today_record);
 
         // dd($now);
         $b = MealRecord::whereDate('record_date', $today)->get();
-        dd($b);
+        // dd($b);
         // $records = [];  $foods = [];
         // foreach ($b as $mealRecord) {
         //     $records[] = $mealRecord;
@@ -39,7 +47,7 @@ class MealRecordController extends Controller
         //     }
         // }
         // dd($records, $foods);
-        return view('meal_records.index', compact('b'));
+        return view('meal_records.index', compact('today_record'));
     }
 
     /**
@@ -57,6 +65,7 @@ class MealRecordController extends Controller
     {
         $createForm = MealRecord::create([
             'user_id' => Auth::id(),
+            'record_date' => $request->record_date,
             'meal_type' => $request->meal_type,
             'meal_time' => $request->meal_time,
         ]);
