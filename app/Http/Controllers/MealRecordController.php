@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
+    public function events(Request $request, $id){
+
+        $date = $request->date;
+
+        // ログイン済みユーザーのidを使いデータを取得する
+        $user =  User::find(Auth::id());
+
+        $today_record = $user->meal_records()->whereDate('record_date', $date)->get();
+
+        return view('meal_records.index', compact('date'));
+    }
+
     public function dashboard(){
         $today = Carbon::today();
 
@@ -28,16 +40,18 @@ class MealRecordController extends Controller
     public function index()
     {
         // 今日の日付を取得
-        $today = Carbon::today();
+        $today = Carbon::today()->format('Y-m-d');
 
         // ログイン済みユーザーのidを使いデータを取得する
         $user =  User::find(Auth::id());
 
         $today_record = $user->meal_records()->whereDate('record_date', $today)->get();
-        // dd($today_record);
+
+        // $a = MealRecord::whereDate('record_date', $today)->value('record_date');
+        // dd($today);
 
         // dd($now);
-        $b = MealRecord::whereDate('record_date', $today)->get();
+        // $b = MealRecord::whereDate('record_date', $today)->get();
         // dd($b);
         // $records = [];  $foods = [];
         // foreach ($b as $mealRecord) {
@@ -47,7 +61,7 @@ class MealRecordController extends Controller
         //     }
         // }
         // dd($records, $foods);
-        return view('meal_records.index', compact('today_record'));
+        return view('meal_records.index', compact('today_record', 'today'));
     }
 
     /**
@@ -63,6 +77,7 @@ class MealRecordController extends Controller
      */
     public function create_form(Request $request)
     {
+        // dd($request);
         $createForm = MealRecord::create([
             'user_id' => Auth::id(),
             'record_date' => $request->record_date,

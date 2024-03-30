@@ -78,7 +78,10 @@ Route::prefix('/meal_records')
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy'); // フォームの削除
         Route::delete('/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
+        Route::post('/events/{id}', 'events')->name('events');
     });
+
+
 
 // Route::get('meals', [MealRecordController::class, 'index']);
 
