@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name=title>記録一覧</x-slot>
+    {{$today}}
     {{-- ここに記録日と総カロリーを表示する --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="flex flex-col items-center min-h-screen sm:pt-20">

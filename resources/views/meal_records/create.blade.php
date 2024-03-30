@@ -9,6 +9,9 @@
             </div>
             <form method="post" action="{{ route('meal_records.create_form') }}">
                 @csrf
+                <div>
+                    <input type="hidden" name="record_date" value="{{ now()->format('Y-m-d') }}">
+                </div>
                 <div class="flex items-center justify-center my-7">
                     <div class="mx-4">
                         <x-input-label for="email" :value="'食事の種類'" class="mt-7" />
