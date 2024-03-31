@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         dateClick: function (info) {
             let dateStr = info.dateStr;
-            window.location.href = '/meal_records/date' + dateStr;
+            window.location.href = "/meal_records/record?date=" + dateStr;
         },
     });
     calendar.render();

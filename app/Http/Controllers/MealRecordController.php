@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
-    public function date(Request $request){
+    public function record(Request $request){
 
         // dd($request);
         $date = $request->input('date');
-        dd($date);
+        // dd($date);
         // ログイン済みユーザーのidを使いデータを取得する
         $user =  User::find(Auth::id());
 
@@ -68,9 +68,11 @@ class MealRecordController extends Controller
     /**
      * 記録フォーム作成遷移
      */
-    public function create()
+    public function create($date)
     {
-        return view('meal_records.create');
+        $date = $date;
+
+        return view('meal_records.create', compact('date'));
     }
 
     /**
@@ -87,7 +89,7 @@ class MealRecordController extends Controller
         ]);
         // dd($createForm);
 
-        return to_route('meal_records.index');
+        return to_route('meal_records.index' );
     }
 
     /**

@@ -74,8 +74,8 @@ Route::prefix('/meal_records')
     ->name('meal_records.')
     ->group(function () {
         Route::get('/', 'index')->name('index'); // 記録一覧
-        Route::get('/create', 'create')->name('create'); // 記録フォーム作成
-        Route::get('/date/{date?}', 'date')->name('date');
+        Route::get('/create/{date}', 'create')->name('create'); // 記録フォーム作成
+        Route::get('/record/{date?}', 'record')->name('record');
         Route::post('/create_form', 'create_form')->name('create_form'); // 記録フォームの保存
         Route::get('/{meal_record_id}/add', 'add')->name('add'); // 食品追加に遷移
         Route::post('/{meal_record_id}/{food_id}/add_food', 'add_food')->name('add_food'); // 食品追加
