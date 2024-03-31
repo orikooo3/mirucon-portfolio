@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
-    public function events(Request $request){
+    public function date(Request $request){
 
+        // dd($request);
         $date = $request->input('date');
-
+        dd($date);
         // ログイン済みユーザーのidを使いデータを取得する
         $user =  User::find(Auth::id());
 

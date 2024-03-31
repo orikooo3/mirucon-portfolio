@@ -18,38 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         dateClick: function (info) {
-            // Ajaxリクエストの設定
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-            });
-
-            // Ajaxリクエストの送信
-            $.ajax({
-                type: "POST",
-                url: "/meal_records/events",
-                dataType: "json",
-                data: { date: info.dateStr },
-                success: function (res) {
-                    console.log(res);
-                },
-                error: function (xhr, status, error) {
-                    console.log(error.statusText);
-                },
-            })
-                .done(function () {
-                    alert("成功");
-                })
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    alert("ファイルの取得に失敗しました。");
-                    console.log("ajax通信に失敗しました");
-                    console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
-                    console.log("textStatus     : " + textStatus); // タイムアウト、パースエラー
-                    console.log("errorThrown    : " + errorThrown.message); // 例外情報
-                });
+            let dateStr = info.dateStr;
+            window.location.href = '/meal_records/date' + dateStr;
         },
     });
     calendar.render();
