@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Route::get('/calendar', function () {
+//     return view('calendar');
+// });
+
 Route::get('/', function () {
     // if (Auth::user()) {
     //     return route('dashboard');
@@ -71,6 +75,7 @@ Route::prefix('/meal_records')
     ->group(function () {
         Route::get('/', 'index')->name('index'); // 記録一覧
         Route::get('/create', 'create')->name('create'); // 記録フォーム作成
+        Route::get('/events', 'events')->name('events');
         Route::post('/create_form', 'create_form')->name('create_form'); // 記録フォームの保存
         Route::get('/{meal_record_id}/add', 'add')->name('add'); // 食品追加に遷移
         Route::post('/{meal_record_id}/{food_id}/add_food', 'add_food')->name('add_food'); // 食品追加
@@ -78,7 +83,6 @@ Route::prefix('/meal_records')
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy'); // フォームの削除
         Route::delete('/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
-        Route::post('/events/{id}', 'events')->name('events');
     });
 
 
