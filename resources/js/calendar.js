@@ -18,28 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         dateClick: function (info) {
-            // Ajaxリクエストの設定
-            $.ajaxSetup({
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-            });
-
-            // Ajaxリクエストの送信
-            $.ajax({
-                type: "POST",
-                url: "/meal_records/events",
-                dataType: "json",
-                data: { date: info.dateStr },
-                success: function (res) {
-                    console.log(res);
-                },
-                error: function (xhr, status, error) {
-                    console.log(error.statusText);
-                },
-            });
+            let dateStr = info.dateStr;
+            window.location.href = "/meal_records/record?date=" + dateStr;
         },
     });
     calendar.render();

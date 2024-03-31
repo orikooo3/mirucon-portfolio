@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name=title>記録フォーム作成</x-slot>
+    {{$date}}
     <div
         class="flex flex-col items-center min-h-screen sm:pt-20">
         <div class="w-full px-6 py-4 mt-6 bg-white-color shadow-md sm:max-w-md sm:rounded-xl">
@@ -10,7 +11,7 @@
             <form method="post" action="{{ route('meal_records.create_form') }}">
                 @csrf
                 <div>
-                    <input type="hidden" name="record_date" value="{{ now()->format('Y-m-d') }}">
+                    <input type="hidden" name="record_date" value="{{ $date }}">
                 </div>
                 <div class="flex items-center justify-center my-7">
                     <div class="mx-4">
