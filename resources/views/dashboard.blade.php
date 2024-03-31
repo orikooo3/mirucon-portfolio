@@ -1,6 +1,6 @@
 <x-app-layout>
     {{-- カレンダー --}}
-    <x-calendar />
+    @include('calendar');
     <div class="">
         <div class="flex flex-col items-center min-h-screen">
             {{-- 本日の記録 --}}
