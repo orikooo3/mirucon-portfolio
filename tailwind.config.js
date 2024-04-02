@@ -14,9 +14,9 @@ export default {
             colors: {
                 "main-color": "#F1F2F4",
                 "sub-color": "#3AC5A2",
-                "sub-dark-color": "#34B08F",
-                "accent-color": "#277386",
-                "accent-dark-color": "#226576",
+                "sub-dark-color": "#1C5D80",
+                "accent-color": "#33809F",
+                "accent-dark-color": "#2C708A",
                 "white-color": "#FDFDFD",
                 "white-dark-color": "#F2F2F2",
                 "black-color": "#333333",

@@ -88,8 +88,13 @@ class MealRecordController extends Controller
             'meal_time' => $request->meal_time,
         ]);
         // dd($createForm);
+        $date = $request->record_date;
+        // dd($date);
+        $user =  User::find(Auth::id());
 
-        return to_route('meal_records.index' );
+        $today_record = $user->meal_records()->whereDate('record_date', $date)->get();
+
+        return view('meal_records.index', compact('today_record', 'date'));
     }
 
     /**
