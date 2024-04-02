@@ -12,7 +12,7 @@
                         <tr>
                             <th colspan="3" scope="col" class="px-6 py-4 ">
                                 <div class="flex">
-                                    <div class="pt-0.5"><a href="{{ route('meal_records.index') }}"><i
+                                    <div class="pt-0.5"><a href="{{ back() }}"><i
                                                 class="fa-solid fa-x text-2xl"></i></a></div>
 
                                     <div>

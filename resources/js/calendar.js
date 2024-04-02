@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // ここに各種オプションを書いていくと設定が適用されていく
         initialView: "dayGridMonth",
         locale: "ja",
+        buttonText: {
+            today: "今日",
+        },
+
         headerToolbar: {
             left: "prev,next today",
             center: "title",
@@ -21,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let dateStr = info.dateStr;
             window.location.href = "/meal_records/record?date=" + dateStr;
         },
+
     });
     calendar.render();
 });

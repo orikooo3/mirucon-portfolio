@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name=title>記録フォーム作成</x-slot>
+    {{-- indexから送信された日にち --}}
     {{$date}}
     <div
         class="flex flex-col items-center min-h-screen sm:pt-20">
@@ -11,6 +12,7 @@
             <form method="post" action="{{ route('meal_records.create_form') }}">
                 @csrf
                 <div>
+                    {{-- indexから送信された日にちを登録ボタンをクリックすることでmeal_records.create_formコントローラーにリクエストされる --}}
                     <input type="hidden" name="record_date" value="{{ $date }}">
                 </div>
                 <div class="flex items-center justify-center my-7">

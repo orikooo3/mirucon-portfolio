@@ -1,9 +1,11 @@
 <x-app-layout>
     <x-slot name=title>記録一覧</x-slot>
-    {{$date}}
+
     {{-- ここに記録日と総カロリーを表示する --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
         <div class="flex flex-col items-center min-h-screen sm:pt-20">
+            <div class="text-3xl ">{{$date}}</div>
             <x-action-button type="button" class="mb-6 w-64 "
                 onclick="location.href='{{ route('meal_records.create', ['date' => $date]) }}'">
                 <i class="fa-regular fa-plus mt-0.5 mr-1"></i>記録フォームを作成

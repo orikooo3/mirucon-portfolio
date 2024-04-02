@@ -20,7 +20,7 @@ class MealRecordFactory extends Factory
         //'Y/m/d'
         return [
             'user_id' => User::inRandomOrder()->first()->id,             //リレーション定義
-            'record_date' => fake()->date(),
+            'record_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'meal_type' => $this->faker->randomElement(['朝食', '昼食', '夜食', '間食']),
             'meal_time' => fake()->time('H:i'),
             'total_calorie' => fake()->randomNumber(4, true),

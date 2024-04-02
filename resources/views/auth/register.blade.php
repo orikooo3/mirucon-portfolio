@@ -65,7 +65,7 @@
                     </div>
                     <div class=" ">
                         <label for="female" class="text-xs ml-3">女性</label>
-                        <input checked id="female" type="radio" value="1" name="sex" class="text-sub-color focus:ring-sub-dark-color">
+                        <input id="female" type="radio" value="1" name="sex" class="text-sub-color focus:ring-sub-dark-color">
                     </div>
                 </div>
             </div>
