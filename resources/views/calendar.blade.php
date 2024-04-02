@@ -1,11 +1,11 @@
 <html>
 
 <head>
-    <style>
+    {{-- <style>
         .fc-daygrid-day {
             background-color: #277386 !important;
         }
-    </style>
+    </style> --}}
     {{-- Script --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
