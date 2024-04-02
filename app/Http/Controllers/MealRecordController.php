@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
-    public function record(Request $request){
+    public function record(Request $request)
+    {
 
         // dd($request);
         $date = $request->input('date');
@@ -26,7 +27,8 @@ class MealRecordController extends Controller
         return view('meal_records.index', compact('today_record', 'date'));
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         $today = Carbon::today();
 
         $user =  User::find(Auth::id());
@@ -121,8 +123,17 @@ class MealRecordController extends Controller
         // if ($food_id == null) {
         //     return 'error';
         // }
-        // MealRecordモデルのidとFoodRegistrationモデルのidを紐付けている
+        // MealRecordのidとFoodRegistrationのidを紐付けている
         MealRecord::find($meal_record_id)->foodRegistrations()->attach($food_id);
+        $foods = MealRecord::find($meal_record_id)->foodRegistrations()->get(['calorie']);
+        $meal_calorie = 0;
+        foreach ($foods as $food) {
+            $meal_calorie += $food['calorie'];
+        }
+        $meal_record = MealRecord::find($meal_record_id);
+        $meal_record->meal_calorie = $meal_calorie;
+        // dd($meal_record);
+        $meal_record->save();
         return back();
     }
 
@@ -164,7 +175,8 @@ class MealRecordController extends Controller
         return to_route('meal_records.index');
     }
 
-    public function record_destroy ($record_id){
+    public function record_destroy($record_id)
+    {
         $delete_record = MealRecord::find($record_id)->delete();
         // dd($delete_record);
         return back();
