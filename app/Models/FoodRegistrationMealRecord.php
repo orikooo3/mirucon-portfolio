@@ -11,5 +11,5 @@ class FoodRegistrationMealRecord extends Model
 
     protected $table = 'food_registration_meal_record';
 
-    public $timestamps = false; //作成日、更新日を児童に更新しない
+    public $timestamps = false; //作成日、更新日を自動に更新しない
 }

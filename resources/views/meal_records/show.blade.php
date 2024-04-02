@@ -42,7 +42,7 @@
                             @else
                                 <th scope="col" class="pl-24 py-4 w-2/3"></th>
                             @endif
-                            <th scope="col" class="pr-8 py-3">
+                            <th scope="col" class="pr-8 py-3 w-2/3">
                                 <x-text-input type="time" id="meal_time" name="meal_time"
                                     value="{{ $meal_records->meal_time }}" class="w-24 h-8 text-sm text-black-color" />
                             </th>
