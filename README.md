@@ -12,7 +12,6 @@
 食品情報を登録することができます。具体的には**食品名**、**量**、**カロリー**、**タンパク質**、**脂質**、**炭水化物**を登録することができます。
 ![2024-03-201210341-ezgif com-video-to-gif-converter](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/670003df-e025-4df5-adbf-791f5a3e65eb)
 
-
 <br>
 
 ### (2)食品編集・削除機能
