@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name=title>食品一覧</x-slot>
     <div class="">
-        <div class="flex flex-col items-center min-h-screen sm:py-20">
+        <div class="flex flex-col items-center min-h-screen sm:py-16">
             <table class="w-2/5 text-left rtl:text-right text-lg">
                 <thead class="dark:text-white-color dark:bg-sub-color">
                     <tr>
@@ -49,6 +49,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="">{{ $foods->links('vendor.pagination.custom') }}</div>
         </div>
     </div>
 </x-app-layout>

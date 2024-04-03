@@ -12,6 +12,7 @@
 食品情報を登録することができます。具体的には**食品名**、**量**、**カロリー**、**タンパク質**、**脂質**、**炭水化物**を登録することができます。
 ![2024-03-201210341-ezgif com-video-to-gif-converter](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/670003df-e025-4df5-adbf-791f5a3e65eb)
 
+
 <br>
 
 ### (2)食品編集・削除機能
@@ -19,6 +20,10 @@
 更新は記録詳細画面と食品一覧画面の食品名を選択することで編集画面に遷移し、各項目を編集することができます。<br>
 削除は各食品データに削除ボタンがあり、それをクリックすることで簡単に削除することが可能です。
 ![2024-03-201525411-ezgif com-video-to-gif-converter](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/ad76f961-1b56-4385-bb8c-de3fe64068a5)
+![2024-03-201525411-ezgif com-video-to-gif-converter](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/ad76f961-1b56-4385-bb8c-de3fe64068a5)
+
+![2024-03-201232181-ezgif com-optimize](https://github.com/orikooo3/mirucon-portfolio/assets/131629915/793ec21c-aa26-4703-adcc-6923411d9ab2)
+
 
 <br>
 

@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// Route::get('/calendar', function () {
+//     return view('calendar');
+// });
+
 Route::get('/', function () {
     // if (Auth::user()) {
     //     return route('dashboard');
@@ -41,7 +45,8 @@ Route::prefix('/profile')
  * 食品登録用ルーティング
  * prefix: URLの接頭辞
  * name: 名前付きルートの接頭辞
- * middleware: リクエストが特定の条件を満たしているかどうかを確認する(auth: ログイン済みかどうか確認する、verified: 登録したメールアドレスを確認する)
+ * middleware: リクエストが特定の条件を満たしているかどうかを確認する(auth: ログイン済みかどうか確認する、
+ * verified: 登録したメールアドレスを確認する)
  * contoroller: コントローラーを定義できる
  * name: 名前付きルート
  * group: ルートをグループ化できる
@@ -69,17 +74,18 @@ Route::prefix('/meal_records')
     ->name('meal_records.')
     ->group(function () {
         Route::get('/', 'index')->name('index'); // 記録一覧
-        Route::get('/create', 'create')->name('create'); // 記録フォーム作成
+        Route::get('/create/{date}', 'create')->name('create'); // 記録フォーム作成
+        Route::get('/record/{date?}', 'record')->name('record');
         Route::post('/create_form', 'create_form')->name('create_form'); // 記録フォームの保存
         Route::get('/{meal_record_id}/add', 'add')->name('add'); // 食品追加に遷移
         Route::post('/{meal_record_id}/{food_id}/add_food', 'add_food')->name('add_food'); // 食品追加
-        Route::get('/{record_id}/store', 'store')->name('store'); // 記録詳細の保存
         Route::get('/{id}', 'show')->name('show'); // 記録詳細に遷移
-        Route::get('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy'); // フォームの削除
         Route::delete('/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
     });
+
+
 
 // Route::get('meals', [MealRecordController::class, 'index']);
 

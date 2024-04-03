@@ -5,27 +5,56 @@ namespace App\Http\Controllers;
 use App\Models\FoodRegistration;
 use App\Models\FoodRegistrationMealRecord;
 use App\Models\MealRecord;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class MealRecordController extends Controller
 {
-    public function dashboard(){
-        $a = Auth::user()->meal_records->pluck('id');
-        $b = MealRecord::find($a);
+    public function record(Request $request)
+    {
 
-        return view('dashboard', compact('b'));
+        // dd($request);
+        $date = $request->input('date');
+        // dd($date);
+        // ログイン済みユーザーのidを使いデータを取得する
+        $user =  User::find(Auth::id());
+
+        $today_record = $user->meal_records()->whereDate('record_date', $date)->get();
+
+        return view('meal_records.index', compact('today_record', 'date'));
+    }
+
+    public function dashboard()
+    {
+        $today = Carbon::today();
+
+        $user =  User::find(Auth::id());
+
+        $today_record = $user->meal_records()->whereDate('record_date', $today)->get();
+
+        return view('dashboard', compact('today_record'));
     }
     /**
      * 記録一覧(完了画面)遷移
      */
     public function index()
     {
-        // $aに含まれるIDを持つすべてのMealRecordレコードを取得
-        $a = Auth::user()->meal_records->pluck('id');
+        // 今日の日付を取得
+        $date = Carbon::today()->format('Y-m-d');
 
-        $b = MealRecord::find($a);
+        // ログイン済みユーザーのidを使いデータを取得する
+        $user =  User::find(Auth::id());
+
+        $today_record = $user->meal_records()->whereDate('record_date', $date)->get();
+
+        // $a = MealRecord::whereDate('record_date', $today)->value('record_date');
+        // dd($today);
+
+        // dd($now);
+        // $b = MealRecord::whereDate('record_date', $today)->get();
         // dd($b);
         // $records = [];  $foods = [];
         // foreach ($b as $mealRecord) {
@@ -35,15 +64,17 @@ class MealRecordController extends Controller
         //     }
         // }
         // dd($records, $foods);
-        return view('meal_records.index', compact('b'));
+        return view('meal_records.index', compact('today_record', 'date'));
     }
 
     /**
      * 記録フォーム作成遷移
      */
-    public function create()
+    public function create($date)
     {
-        return view('meal_records.create');
+        $date = $date;
+
+        return view('meal_records.create', compact('date'));
     }
 
     /**
@@ -51,14 +82,21 @@ class MealRecordController extends Controller
      */
     public function create_form(Request $request)
     {
+        // dd($request);
         $createForm = MealRecord::create([
             'user_id' => Auth::id(),
+            'record_date' => $request->record_date,
             'meal_type' => $request->meal_type,
             'meal_time' => $request->meal_time,
         ]);
         // dd($createForm);
+        $date = $request->record_date;
+        // dd($date);
+        $user =  User::find(Auth::id());
 
-        return to_route('meal_records.index');
+        $today_record = $user->meal_records()->whereDate('record_date', $date)->get();
+
+        return view('meal_records.index', compact('today_record', 'date'));
     }
 
     /**
@@ -85,16 +123,18 @@ class MealRecordController extends Controller
         // if ($food_id == null) {
         //     return 'error';
         // }
-        // MealRecordモデルのidとFoodRegistrationモデルのidを紐付けている
+        // MealRecordのidとFoodRegistrationのidを紐付けている
         MealRecord::find($meal_record_id)->foodRegistrations()->attach($food_id);
+        $foods = MealRecord::find($meal_record_id)->foodRegistrations()->get(['calorie']);
+        $meal_calorie = 0;
+        foreach ($foods as $food) {
+            $meal_calorie += $food['calorie'];
+        }
+        $meal_record = MealRecord::find($meal_record_id);
+        $meal_record->meal_calorie = $meal_calorie;
+        // dd($meal_record);
+        $meal_record->save();
         return back();
-    }
-
-    /**
-     * 記録詳細(確認画面)抽出
-     */
-    public function store()
-    {
     }
 
     /**
@@ -105,9 +145,10 @@ class MealRecordController extends Controller
 
         // $food_registration_id = FoodRegistrationMealRecord::get('food_registration_id'); // 中間テーブル: food_registration_idの抽出
         // $meal_record_id = FoodRegistrationMealRecord::get('meal_record_id'); // 中間テーブル: meal_record_idの抽出
-        $mealRecords = MealRecord::findOrFail($request->id);
+        $meal_records = MealRecord::findOrFail($request->id);
+        // dd($mealRecords);
         // 記録詳細画面のMealRecordIDと紐付ける
-        $foods = MealRecord::find($mealRecords->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを抽出できてなかった
+        $foods = MealRecord::find($meal_records->id)->foodRegistrations()->get(); // get(['food_name', 'grams', 'calory'])にしてたため、idを抽出できてなかった
         // dd($food_name + $grams + $calory);
         // dd($foods);
         // dd(array_merge_recursive($food_name, $grams, $calory));
@@ -116,14 +157,7 @@ class MealRecordController extends Controller
         //     dump($food_record);
         // }
 
-        return view('meal_records.show', compact('mealRecords', 'foods'));
-    }
-
-    /**
-     *
-     */
-    public function edit()
-    {
+        return view('meal_records.show', compact('meal_records', 'foods'));
     }
 
     /**
@@ -131,9 +165,18 @@ class MealRecordController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        // dd($request);
+        $record = MealRecord::find($id);
+        $record->meal_type = $request->meal_type;
+        $record->meal_time = $request->meal_time;
+        $record->save();
+        // dd($record);
+
+        return to_route('meal_records.index');
     }
 
-    public function record_destroy ($record_id){
+    public function record_destroy($record_id)
+    {
         $delete_record = MealRecord::find($record_id)->delete();
         // dd($delete_record);
         return back();

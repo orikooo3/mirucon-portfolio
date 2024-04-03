@@ -24,9 +24,10 @@ class FoodRegistrationFactory extends Factory
             'food_name' => fake()->word(),
             'grams' => fake()->randomNumber(3, true),
             'calorie' => fake()->randomNumber(3, true),
-            'protein' => fake()->randomNumber(3, true),
-            'fat' => fake()->randomNumber(3, true),
-            'carbohydrate' => fake()->randomNumber(3, true),
+            'protein' => fake()->randomFloat(1, 1, 100),
+            'fat' => fake()->randomFloat(1, 1, 100),
+            'carbohydrate' => fake()->randomFloat(1, 1, 100),
+            'quantity' => fake()->numberBetween(1, 10),
             'created_at' => fake()->dateTimeBetween('-1 years'),
             'updated_at' => fake()->dateTimeBetween('-1 years'),
         ];

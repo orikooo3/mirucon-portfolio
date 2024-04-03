@@ -49,7 +49,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('meal_records.index')">
+                        <x-dropdown-link :href="route('dashboard')">
                             {{ '本日の記録' }}
                         </x-dropdown-link>
 

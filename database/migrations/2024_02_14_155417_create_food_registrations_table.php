@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('food_name');
             $table->integer('grams');
             $table->integer('calory');
-            $table->integer('protein')->nullable();
-            $table->integer('fat')->nullable();
-            $table->integer('carbohydrate')->nullable();
+            $table->double('protein', 4, 1)->nullable();
+            $table->double('fat', 4, 1)->nullable();
+            $table->double('carbohydrate', 4, 1)->nullable();
             $table->timestamps();
         });
     }

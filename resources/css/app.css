@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import "./calendar.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

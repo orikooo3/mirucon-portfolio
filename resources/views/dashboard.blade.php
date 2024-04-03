@@ -1,6 +1,6 @@
 <x-app-layout>
     {{-- カレンダー --}}
-    <x-calendar />
+    @include('calendar');
     <div class="">
         <div class="flex flex-col items-center min-h-screen">
             {{-- 本日の記録 --}}
@@ -9,8 +9,8 @@
                 onclick="location.href='{{ route('meal_records.index') }}'">
                 <i class="fa-regular fa-plus my-auto mr-1"></i>本日の記録を追加
             </x-action-button>
-            @if (!empty($b))
-                @foreach ($b as $record)
+            @if ($today_record->isNotEmpty())
+                @foreach ($today_record as $record)
                     <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
                         <thead class="dark:text-white-color dark:bg-sub-color">
                             <tr class="">
@@ -19,7 +19,8 @@
                                     {{ substr($record->meal_time, 0, 5) }}</th>
                                 @if (!empty($record->meal_calorie))
                                     <th scope="col" class="pl-32 py-4 w-2/3">{{ $record->meal_calorie }}kcal</th>
-                                @else <th scope="col" class="pl-32 py-4 w-2/3"></th>
+                                @else
+                                    <th scope="col" class="pl-32 py-4 w-2/3"></th>
                                 @endif
                             </tr>
                         </thead>
@@ -54,6 +55,10 @@
                         @endif
                     </table>
                 @endforeach
+            @else
+                <div class="">
+                    <x-text-label class="text-3xl dark:text-gray-color">記録はありません</x-text-label>
+                </div>
             @endif
         </div>
     </div>
