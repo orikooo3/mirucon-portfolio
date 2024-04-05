@@ -3,7 +3,6 @@
     <div class="">
         <div class="flex flex-col items-center min-h-screen sm:py-20">
             <table class="w-2/5 text-left text-lg font-light dark:text-explain-color mb-10">
-
                 <thead class="dark:text-white-color dark:bg-sub-color">
                     <form id="update" method="post"
                         action="{{ route('meal_records.update', ['id' => $meal_records->id]) }}">

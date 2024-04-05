@@ -19,9 +19,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/calendar', function () {
-//     return view('calendar');
-// });
+/** メソッド一覧
+ * group: ルートをグループ化できる
+ * prefix: URLの接頭辞
+ * name: 名前付きルートの接頭辞
+ * middleware: リクエストが特定の条件を満たしているかどうかを確認する(auth: ログイン済みかどうか確認する、
+ * verified: 登録したメールアドレスを確認する)
+ * contoroller: コントローラーを定義できる
+ * name: 名前付きルート
+ */
 
 Route::get('/', function () {
     // if (Auth::user()) {
@@ -39,18 +45,6 @@ Route::prefix('/profile')
         Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-// Route::resource('food_registration', FoodRegistrationController::class);
-
-/**
- * 食品登録用ルーティング
- * prefix: URLの接頭辞
- * name: 名前付きルートの接頭辞
- * middleware: リクエストが特定の条件を満たしているかどうかを確認する(auth: ログイン済みかどうか確認する、
- * verified: 登録したメールアドレスを確認する)
- * contoroller: コントローラーを定義できる
- * name: 名前付きルート
- * group: ルートをグループ化できる
- *  */
 Route::prefix('/food_registrations')
     ->middleware(['auth'])
     ->controller(FoodRegistrationController::class)
@@ -62,33 +56,25 @@ Route::prefix('/food_registrations')
         Route::get('/{id}', 'show')->name('show');
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
-        Route::delete('/{id}/destroy', 'destroy')->name('destroy');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 
-/**
- *  食事記録用のルーティング
- */
 Route::prefix('/meal_records')
     ->middleware(['auth'])
     ->controller(MealRecordController::class)
     ->name('meal_records.')
     ->group(function () {
-        Route::get('/', 'index')->name('index'); // 記録一覧
-        Route::get('/create/{date}', 'create')->name('create'); // 記録フォーム作成
+        Route::get('/', 'index')->name('index');
+        Route::get('/create/{date}', 'create')->name('create');
         Route::get('/record/{date?}', 'record')->name('record');
-        Route::post('/create_form', 'create_form')->name('create_form'); // 記録フォームの保存
-        Route::get('/{meal_record_id}/add', 'add')->name('add'); // 食品追加に遷移
-        Route::post('/{meal_record_id}/{food_id}/add_food', 'add_food')->name('add_food'); // 食品追加
-        Route::get('/{id}', 'show')->name('show'); // 記録詳細に遷移
+        Route::post('/create_form', 'create_form')->name('create_form');
+        Route::get('/{meal_record_id}/add', 'add')->name('add');
+        Route::post('/{meal_record_id}/{food_id}/add_food', 'add_food')->name('add_food');
+        Route::get('/{id}', 'show')->name('show');
         Route::patch('/{id}', 'update')->name('update');
-        Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy'); // フォームの削除
-        Route::delete('/{food_id}/destroy', 'destroy')->name('destroy'); // 詳細画面の食品の削除
+        Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy');
+        Route::delete('/{food_id}/destroy', 'destroy')->name('destroy');
     });
-
-
-
-// Route::get('meals', [MealRecordController::class, 'index']);
-
 
 /**
  * 目的別にルート情報を分割する

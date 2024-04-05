@@ -9,44 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class FoodRegistrationController extends Controller
 {
-    /**
-     * ログインユーザーのみのデータを返す
-     */
+
     public function index()
     {
-        // $foods = Auth::user()->food_registrations()->paginate(5) //エラーになるコード
-
         $user =  User::find(Auth::id());
-        // dd($user);
         $foods = $user->food_registrations()->latest()->paginate(5)->onEachSide(1);
-        // dd($foods);
         return view('food_registrations.index', ['foods' => $foods]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('food_registrations.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // var_dump($request->all());
-        // $user = Auth::user();
-        // $id = Auth::id();
-        // dd($request, $request->food_name);
-        /**
-         * $requestの中身は<form>の中でname属性と紐付いているvalue属性の値が送信される
-         * 例: name=food_name value="ご飯"　がリクエストされる
-         * できるだけnameはカラム名と合わせるとわかりやすい
-         * 'calorie' => $request->grams,は左がのkeyがカラム名になっていて、右の値が$requestで取得した値。これでもエラーにならないで値が
-         * key(カラム)と紐ついてしまう
-         */
         $food = FoodRegistration::create([
             'user_id' => Auth::id(),
             'food_name' => $request->food_name,
@@ -56,13 +33,9 @@ class FoodRegistrationController extends Controller
             'fat' => $request->fat,
             'carbohydrate' => $request->carbohydrate,
         ]);
-        // dd($food);
         return to_route('food_registrations.index');
     }
 
-    /**
-     * 指定ユーザーのプロファイルを表示
-     */
     public function show(string $id)
     {
         $food = FoodRegistration::find($id);
@@ -70,9 +43,6 @@ class FoodRegistrationController extends Controller
         return view('food_registrations.show', compact('food'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         $food = FoodRegistration::find($id);
@@ -80,9 +50,6 @@ class FoodRegistrationController extends Controller
         return view('food_registrations.edit', compact('food'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         $food = FoodRegistration::find($id);
@@ -97,9 +64,6 @@ class FoodRegistrationController extends Controller
         return to_route('food_registrations.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $food = FoodRegistration::find($id);
