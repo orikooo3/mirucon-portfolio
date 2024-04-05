@@ -3,7 +3,6 @@
 
     {{-- ここに記録日と総カロリーを表示する --}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
         <div class="flex flex-col items-center min-h-screen sm:pt-20">
             <div class="text-3xl ">{{$date}}</div>
             <x-action-button type="button" class="mb-6 w-64 "
