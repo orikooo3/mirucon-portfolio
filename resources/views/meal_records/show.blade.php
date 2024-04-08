@@ -63,7 +63,7 @@
                                     <div class="flex">
                                         <div class="dark:text-accent-color dark:hover:text-accent-dark-color ">
                                             <form method="post" id="delete"
-                                                action="{{ route('meal_records.destroy', ['food_id' => $food->id]) }}">
+                                                action="{{ route('meal_records.destroy', ['food_id' => $food->id, 'meal_record_id' => $meal_records->id]) }}">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" form="delete"><i

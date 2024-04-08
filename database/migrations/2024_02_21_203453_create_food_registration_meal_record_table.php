@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('food_registration_id')->constrained()->onDelete('cascade');
             //外部キー制約
             $table->foreignId('meal_record_id')->constrained()->onDelete('cascade');
+
+            $table->integer('calorie');
             // $table->timestamps();
             //プライマリーキー
             // $table->primary(['meal_record_id', 'food_registration_id']);

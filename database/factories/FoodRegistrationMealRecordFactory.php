@@ -25,6 +25,7 @@ class FoodRegistrationMealRecordFactory extends Factory
             'food_registration_id' => function () {
                 return FoodRegistration::inRandomOrder()->first()->id;
             },
+            'calorie' => fake()->randomNumber(3, true),
         ];
     }
 }

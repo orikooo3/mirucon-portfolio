@@ -21,7 +21,7 @@ class MealRecord extends Model
     // 多対多のリレーション
     public function foodRegistrations()
     {
-        return $this->belongsToMany(FoodRegistration::class);
+        return $this->belongsToMany(FoodRegistration::class)->withPivot('calorie');
     }
 
     // 一対多のリレーション
