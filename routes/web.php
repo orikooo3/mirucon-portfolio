@@ -30,9 +30,6 @@ use Illuminate\Support\Facades\Auth;
  */
 
 Route::get('/', function () {
-    // if (Auth::user()) {
-    //     return route('dashboard');
-    // }
     return view('welcome');
 })->name('welcome');
 
@@ -73,7 +70,7 @@ Route::prefix('/meal_records')
         Route::get('/{id}', 'show')->name('show');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{record_id}/record_destroy', 'record_destroy')->name('record_destroy');
-        Route::delete('/{food_id}/destroy', 'destroy')->name('destroy');
+        Route::delete('/{food_id}/{meal_record_id}/destroy', 'destroy')->name('destroy');
     });
 
 /**
