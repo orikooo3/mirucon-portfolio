@@ -80,16 +80,19 @@ class MealRecordController extends Controller
 
     public function add_food($meal_record_id, $food_id)
     {
-        $this->$food_id = FoodRegistration::find($food_id);
-        MealRecord::find($meal_record_id)->foodRegistrations()->attach($food_id);
-        $foods = MealRecord::find($meal_record_id)->foodRegistrations()->get(['calorie']);
-        $meal_calorie = 0;
-        foreach ($foods as $food) {
-            $meal_calorie += $food['calorie'];
-        }
-        $meal_record = MealRecord::find($meal_record_id);
-        $meal_record->meal_calorie = $meal_calorie;
-        $meal_record->save();
+        $food = FoodRegistration::find($food_id);
+        // dd($food->calorie);
+        MealRecord::find($meal_record_id)->foodRegistrations()->attach($food_id, ['calorie' => $food->calorie]);
+
+        $meal_calorie = FoodRegistrationMealRecord::where('meal_record_id', $meal_record_id)->sum('calorie');
+
+        // dd($meal_calorie);
+
+        $meal_record_calorie = MealRecord::find($meal_record_id);
+        // dd($a->meal_calorie);
+        $meal_record_calorie->meal_calorie = $meal_calorie;
+        // dd($a);
+        $meal_record_calorie->save();
         return back();
     }
 
@@ -117,11 +120,21 @@ class MealRecordController extends Controller
         return back();
     }
 
-    public function destroy($food_id)
+    public function destroy($food_id, $meal_record_id)
     {
+        // dd($meal_record_id);
         $food_id = FoodRegistration::find($food_id);
         $food_record_id = FoodRegistrationMealRecord::where('food_registration_id', $food_id->id)->value('id');
         FoodRegistrationMealRecord::find($food_record_id)->delete();
+
+        $meal_calorie = FoodRegistrationMealRecord::where('meal_record_id', $meal_record_id)->sum('calorie');
+        // dd($meal_calorie);
+
+        $meal_record_calorie = MealRecord::find($meal_record_id);
+        // dd($a->meal_calorie);
+        $meal_record_calorie->meal_calorie = $meal_calorie;
+        // dd($meal_record_calorie);
+        $meal_record_calorie->save();
         return back();
     }
 }

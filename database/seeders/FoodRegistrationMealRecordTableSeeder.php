@@ -14,6 +14,6 @@ class FoodRegistrationMealRecordTableSeeder extends Seeder
      */
     public function run(): void
     {
-        FoodRegistrationMealRecord::factory()->create();
+        FoodRegistrationMealRecord::factory(5)->create();
     }
 }
