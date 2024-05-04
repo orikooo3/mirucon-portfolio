@@ -27,7 +27,7 @@
                                     <td scope="row" class="px-6 text-xl w-2/3">
                                         <div class="flex">
                                             <div class="text-lg">{{ $food->food_name }}</div>
-                                            <div class="text-base mt-0.5">{{ '(' . $food->grams . 'g)' }}</div>
+                                            <div class="text-base text-gray-color mt-0.5">{{ '(' . $food->grams . 'g)' }}</div>
                                         </div>
                                         <div class="text-sm text-gray-color">{{ $food->calorie }}kcal</div>
                                     </td>
